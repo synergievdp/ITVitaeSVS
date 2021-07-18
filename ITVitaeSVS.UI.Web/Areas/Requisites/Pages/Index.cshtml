@@ -1,0 +1,20 @@
+﻿@page
+@model ITVitaeSVS.UI.Web.Areas.Requisites.Pages.IndexModel
+@{
+}
+
+<a asp-page="CreateEdit">Create</a>
+
+<table>
+    <tr>
+        <th>Name</th>
+    </tr>
+    @foreach (var requisite in Model.Requisites) {
+        <tr>
+            <td>@requisite.Name</td>
+            <td>
+                <a asp-page="CreateEdit" asp-route-id="@requisite.Id">Edit</a>
+            </td>
+        </tr>
+    }
+</table>

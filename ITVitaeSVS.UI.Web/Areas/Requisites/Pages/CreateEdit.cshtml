@@ -1,0 +1,10 @@
+﻿@page "{id:int?}"
+@model ITVitaeSVS.UI.Web.Areas.Requisites.Pages.CreateEditModel
+@{
+}
+
+<form method="post">
+    <input type="hidden" value="@Model.Requisite.Id" />
+    <input asp-for="Requisite.Name" />
+    <input type="submit" />
+</form>

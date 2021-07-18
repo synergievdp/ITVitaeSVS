@@ -1,3 +1,5 @@
+using ITVitaeSVS.Core.Application;
+using ITVitaeSVS.Infrastructure.Data;
 using ITVitaeSVS.Infrastructure.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -22,6 +24,8 @@ namespace ITVitaeSVS.UI.Web {
         public void ConfigureServices(IServiceCollection services) {
             services.AddRazorPages();
 
+            services.AddApplicationServices();
+            services.AddDataServices();
             services.AddIdentityServices(Configuration);
         }
 

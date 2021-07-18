@@ -7,5 +7,6 @@ using System.Threading.Tasks;
 namespace ITVitaeSVS.Core.Domain.Entities {
     public class Certificate : BaseEntity {
         public string Name { get; set; }
+        public string ExamId { get; set; }
     }
 }

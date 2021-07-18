@@ -1,0 +1,10 @@
+﻿@page "{id:int?}"
+@model ITVitaeSVS.UI.Web.Areas.Tags.Pages.CreateEditModel
+@{
+}
+
+<form method="post">
+    <input type="hidden" value="@Model.Tag.Id" />
+    <input asp-for="Tag.Name" />
+    <input type="submit" />
+</form>

@@ -1,0 +1,22 @@
+﻿@page
+@model ITVitaeSVS.UI.Web.Areas.Certificates.Pages.IndexModel
+@{
+}
+
+<a asp-page="CreateEdit">Create</a>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>ExamId</th>
+    </tr>
+    @foreach (var certificate in Model.Certificates) {
+        <tr>
+            <td>@certificate.Name</td>
+            <td>@certificate.ExamId</td>
+            <td>
+                <a asp-page="CreateEdit" asp-route-id="@certificate.Id">Edit</a>
+            </td>
+        </tr>
+    }
+</table>

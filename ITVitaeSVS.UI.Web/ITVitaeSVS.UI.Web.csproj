@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ITVitaeSVS.Core.Application\ITVitaeSVS.Core.Application.csproj" />
     <ProjectReference Include="..\ITVitaeSVS.Infrastructure.Identity\ITVitaeSVS.Infrastructure.Identity.csproj" />
   </ItemGroup>
 

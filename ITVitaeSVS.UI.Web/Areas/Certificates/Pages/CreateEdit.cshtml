@@ -1,0 +1,11 @@
+﻿@page "{id:int?}"
+@model ITVitaeSVS.UI.Web.Areas.Certificates.Pages.CreateEditModel
+@{
+}
+
+<form method="post">
+    <input type="hidden" value="@Model.Certificate.Id" />
+    <input asp-for="Certificate.Name" />
+    <input asp-for="Certificate.ExamId" />
+    <input type="submit" />
+</form>

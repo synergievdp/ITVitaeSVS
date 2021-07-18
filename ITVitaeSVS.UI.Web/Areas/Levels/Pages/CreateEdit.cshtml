@@ -1,0 +1,10 @@
+﻿@page "{id:int?}"
+@model ITVitaeSVS.UI.Web.Areas.Levels.Pages.CreateEditModel
+@{
+}
+
+<form method="post">
+    <input type="hidden" value="@Model.Level.Id" />
+    <input asp-for="Level.Name" />
+    <input type="submit" />
+</form>
