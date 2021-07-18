@@ -11,6 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{09580B21
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITVitaeSVS.Infrastructure.Identity", "ITVitaeSVS.Infrastructure.Identity\ITVitaeSVS.Infrastructure.Identity.csproj", "{81BC5AE3-6808-4DBF-9197-6A85C5169B66}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITVitaeSVS.Core.Domain", "ITVitaeSVS.Core.Domain\ITVitaeSVS.Core.Domain.csproj", "{42BE6C32-301B-420C-8573-E0F9F240C13E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITVitaeSVS.Core.Application", "ITVitaeSVS.Core.Application\ITVitaeSVS.Core.Application.csproj", "{ABE07460-0FD5-4176-8719-492129BACB36}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +29,14 @@ Global
 		{81BC5AE3-6808-4DBF-9197-6A85C5169B66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81BC5AE3-6808-4DBF-9197-6A85C5169B66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81BC5AE3-6808-4DBF-9197-6A85C5169B66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42BE6C32-301B-420C-8573-E0F9F240C13E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42BE6C32-301B-420C-8573-E0F9F240C13E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42BE6C32-301B-420C-8573-E0F9F240C13E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42BE6C32-301B-420C-8573-E0F9F240C13E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABE07460-0FD5-4176-8719-492129BACB36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABE07460-0FD5-4176-8719-492129BACB36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABE07460-0FD5-4176-8719-492129BACB36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABE07460-0FD5-4176-8719-492129BACB36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +44,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{2F058587-A654-448A-8A95-E8C3F273A613} = {8A6EFCD9-3EEF-4563-9ADD-F1A64878B85A}
 		{81BC5AE3-6808-4DBF-9197-6A85C5169B66} = {8A6EFCD9-3EEF-4563-9ADD-F1A64878B85A}
+		{42BE6C32-301B-420C-8573-E0F9F240C13E} = {8A6EFCD9-3EEF-4563-9ADD-F1A64878B85A}
+		{ABE07460-0FD5-4176-8719-492129BACB36} = {8A6EFCD9-3EEF-4563-9ADD-F1A64878B85A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D72B5F53-1494-4908-BD0D-55A22E86BB1D}
