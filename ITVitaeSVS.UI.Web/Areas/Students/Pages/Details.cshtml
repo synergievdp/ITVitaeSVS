@@ -1,0 +1,21 @@
+﻿@page "{id:int}"
+@model ITVitaeSVS.UI.Web.Areas.Students.Pages.DetailsModel
+@{
+}
+
+<div>@Model.Student.FirstName</div>
+<div>@Model.Student.LastName</div>
+<div>@Model.Student.EnrolledDate</div>
+
+<table>
+    <tr>
+        <th></th>
+    </tr>
+    @foreach(var topic in Model.Student.Curriculum.Topics) {
+                <tr>
+                    <td>@topic.Topic.Code</td>
+                    <td>@topic.Progress</td>
+                    <td>@topic.Approved</td>
+                </tr>
+            }
+</table>

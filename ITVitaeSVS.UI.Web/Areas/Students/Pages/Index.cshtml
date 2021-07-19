@@ -1,0 +1,25 @@
+﻿@page
+@model ITVitaeSVS.UI.Web.Areas.Students.Pages.IndexModel
+@{
+}
+
+<a asp-page="CreateEdit">Create</a>
+
+<table>
+    <tr>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Enrolled</th>
+    </tr>
+    @foreach(var student in Model.Students) {
+<tr>
+    <td>@student.FirstName</td>
+    <td>@student.LastName</td>
+    <td>@student.EnrolledDate</td>
+    <td>
+        <a asp-page="Details" asp-route-id="@student.Id">Details</a>
+        <a asp-page="CreateEdit" asp-route-id="@student.Id">Edit</a>
+    </td>
+</tr>
+            }
+</table>

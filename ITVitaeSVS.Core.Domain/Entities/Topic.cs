@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace ITVitaeSVS.Core.Domain.Entities {
     public class Topic : BaseEntity {
-        public string Name { get; set; }
+        public string Code { get; set; }
+        private string name;
+        public string Name { 
+            get { return String.IsNullOrWhiteSpace(name) ? Code : name; } 
+            set { name = value; } 
+        }
         public string Objective { get; set; }
         public TimeSpan Duration { get; set; }
         public WorkMethod WorkMethod { get; set; }
