@@ -24,6 +24,22 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
+                        @if (User.IsInRole("Admin")) {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Admin
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-area="Students" asp-page="Index">Students</a>
+                                <a class="dropdown-item" asp-area="Topics" asp-page="Index">Topics</a>
+                                <a class="dropdown-item" asp-area="Certificates" asp-page="Index">Certificates</a>
+                                <a class="dropdown-item" asp-area="Tags" asp-page="Index">Tags</a>
+                                <a class="dropdown-item" asp-area="Requisites" asp-page="Index">Requisites</a>
+                                <a class="dropdown-item" asp-area="Levels" asp-page="Index">Levels</a>
+                                <a class="dropdown-item" asp-area="WorkMethods" asp-page="Index">WorkMethods</a>
+                            </div>
+                        </li>
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
