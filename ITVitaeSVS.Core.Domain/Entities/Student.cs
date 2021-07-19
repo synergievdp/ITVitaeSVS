@@ -9,7 +9,7 @@ namespace ITVitaeSVS.Core.Domain.Entities {
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Name => String.Join(" ", FirstName, LastName);
-        public DateTime EnrolledDate { get; set; }
-        public Curriculum Curriculum { get; set; }
+        public DateTime EnrolledDate { get; set; } = DateTime.Today;
+        public Curriculum Curriculum { get; set; } = new();
     }
 }

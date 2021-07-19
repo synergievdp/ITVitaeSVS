@@ -20,17 +20,21 @@ namespace ITVitaeSVS.UI.Web.Areas.WorkMethods.Pages
         }
         public void OnGet(int? id)
         {
-            if(id != null) {
+            if (id == null)
+                WorkMethod = new();
+            else {
                 WorkMethod = workMethods.GetById(id.Value);
             }
         }
 
-        public void OnPost(int? id) {
-            if(id != null) {
-                workMethods.Update(WorkMethod);
-            } else {
+        public IActionResult OnPost(int? id) {
+            if (id == null) {
                 workMethods.Add(WorkMethod);
+            } else {
+                workMethods.Update(WorkMethod);
             }
+
+            return RedirectToPage("Index");
         }
     }
 }

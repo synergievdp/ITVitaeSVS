@@ -20,15 +20,17 @@ namespace ITVitaeSVS.UI.Web.Areas.Topics.Pages
         public void OnGet(int? id) {
             if (id != null) {
                 Topic = topics.GetById(id.Value);
-            }
+            } else
+                Topic = new();
         }
 
-        public void OnPost(int? id) {
-            if (id != null) {
-                topics.Update(Topic);
-            } else {
+        public IActionResult OnPost(int? id) {
+            if (id == null) {
                 topics.Add(Topic);
+            } else {
+                topics.Update(Topic);
             }
+            return RedirectToPage("Details", new { Topic.Id });
         }
     }
 }

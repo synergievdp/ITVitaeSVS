@@ -21,16 +21,20 @@ namespace ITVitaeSVS.UI.Web.Areas.Tags.Pages
         }
         public void OnGet(int? id)
         {
-            if(id != null) {
+            if (id == null)
+                Tag = new();
+            else {
                 Tag = tags.GetById(id.Value);
             }
         }
-        public void OnPost(int? id) {
-            if(id != null) {
-                tags.Update(Tag);
-            } else {
+        public IActionResult OnPost(int? id) {
+            if (id == null) {
                 tags.Add(Tag);
+            } else {
+                tags.Update(Tag);
             }
+
+            return RedirectToPage("Index");
         }
     }
 }

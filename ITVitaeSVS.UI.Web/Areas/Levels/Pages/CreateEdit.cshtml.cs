@@ -20,17 +20,21 @@ namespace ITVitaeSVS.UI.Web.Areas.Levels.Pages
         }
         public void OnGet(int? id)
         {
-            if(id != null) {
+            if (id == null)
+                Level = new();
+            else {
                 Level = levels.GetById(id.Value);
             }
         }
 
-        public void OnPost(int? id) {
-            if(id != null) {
-                levels.Update(Level);
-            } else {
+        public IActionResult OnPost(int? id) {
+            if (id == null) {
                 levels.Add(Level);
+            } else {
+                levels.Update(Level);
             }
+
+            return RedirectToPage("Index");
         }
     }
 }

@@ -19,17 +19,21 @@ namespace ITVitaeSVS.UI.Web.Areas.Certificates.Pages
         }
         public void OnGet(int? id)
         {
-            if(id != null) {
+            if (id == null)
+                Certificate = new();
+            else {
                 Certificate = certificates.GetById(id.Value);
             }
         }
 
-        public void OnPost(int? id) {
-            if(id != null) {
-                certificates.Update(Certificate);
-            } else {
+        public IActionResult OnPost(int? id) {
+            if (id == 0) {
                 certificates.Add(Certificate);
+            } else {
+                certificates.Update(Certificate);
             }
+
+            return RedirectToPage("Index");
         }
     }
 }

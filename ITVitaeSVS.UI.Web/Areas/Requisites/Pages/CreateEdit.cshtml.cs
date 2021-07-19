@@ -20,15 +20,20 @@ namespace ITVitaeSVS.UI.Web.Areas.Requisites.Pages
         }
         public void OnGet(int? id)
         {
-            if (id != null)
+            if (id == null)
+                Requisite = new();
+            else {
                 Requisite = requisites.GetById(id.Value);
-        }
-        public void OnPost(int? id) {
-            if(id != null) {
-                requisites.Update(Requisite);
-            } else {
-                requisites.Add(Requisite);
             }
+        }
+        public IActionResult OnPost(int? id) {
+            if (id == null) {
+                requisites.Add(Requisite);
+            } else {
+                requisites.Update(Requisite);
+            }
+
+            return RedirectToPage("Index");
         }
     }
 }

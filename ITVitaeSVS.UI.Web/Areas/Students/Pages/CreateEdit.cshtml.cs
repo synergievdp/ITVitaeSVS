@@ -19,17 +19,21 @@ namespace ITVitaeSVS.UI.Web.Areas.Students.Pages
             this.students = students;
         }
         public void OnGet(int? id) {
-            if(id != null) {
+            if (id == null)
+                Student = new();
+            else {
                 Student = students.GetById(id.Value);
             }
         }
 
-        public void OnPost(int? id) {
-            if(id != null) {
-                students.Update(Student);
-            } else {
+        public IActionResult OnPost(int? id) {
+            if (id == null) {
                 students.Add(Student);
+            } else {
+                students.Update(Student);
             }
+
+            return RedirectToPage("Details", new { Student.Id });
         }
     }
 }

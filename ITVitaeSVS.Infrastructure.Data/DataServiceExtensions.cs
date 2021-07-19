@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace ITVitaeSVS.Infrastructure.Data {
     public static class DataServiceExtensions {
         public static void AddDataServices(this IServiceCollection services) {
-            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddSingleton(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         }
     }
 }
