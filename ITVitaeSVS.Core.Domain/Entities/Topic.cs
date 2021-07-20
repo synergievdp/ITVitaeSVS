@@ -25,5 +25,24 @@ namespace ITVitaeSVS.Core.Domain.Entities {
         public IReadOnlyCollection<Link> Links => links.AsReadOnly();
         private readonly List<Requisite> requisites = new();
         public IReadOnlyCollection<Requisite> Requisites => requisites.AsReadOnly();
+
+        public void AddTag(Tag tag) {
+            tags.Add(tag);
+        }
+        public void AddPrerequisite(Topic topic) {
+            if(!prerequisites.Contains(topic)) {
+                prerequisites.Add(topic); 
+            }
+        }
+        public void AddLink(Link link) {
+            if (!links.Contains(link)) {
+                links.Add(link);
+            }
+        }
+        public void AddRequisite(Requisite requisite) {
+            if (!requisites.Contains(requisite)) {
+                requisites.Add(requisite);
+            }
+        }
     }
 }

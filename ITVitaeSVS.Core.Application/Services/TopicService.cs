@@ -13,21 +13,26 @@ namespace ITVitaeSVS.Core.Application.Services {
         public TopicService(IGenericRepository<Topic> repo) : base(repo) {
 
         }
-        public IEnumerable<Topic> GetByCertificate(Certificate certificate) {
+        public IEnumerable<Topic> GetAllByCertificate(Certificate certificate) {
             return repo.GetAll(topic => topic.Certificate.Id == certificate.Id);
         }
 
-        public IEnumerable<Topic> GetByLevel(Level level) {
+        public IEnumerable<Topic> GetAllByLevel(Level level) {
             return repo.GetAll(topic => topic.Level.Id == level.Id);
         }
 
-        public IEnumerable<Topic> GetByNameCode(string nameCode) {
+        public IEnumerable<Topic> GetAllByNameCode(string nameCode) {
             return repo.GetAll(topic => topic.Name.Contains(nameCode)
                 || topic.Code.Contains(nameCode));
         }
 
-        public IEnumerable<Topic> GetByTag(Tag tag) {
+        public IEnumerable<Topic> GetAllByTag(Tag tag) {
             return repo.GetAll(topic => topic.Tags.Any(t => t.Id == tag.Id));
+        }
+
+        public Topic GetByNameCode(string nameCode) {
+            return repo.Get(topic => topic.Name.Contains(nameCode)
+                || topic.Code.Contains(nameCode));
         }
     }
 }

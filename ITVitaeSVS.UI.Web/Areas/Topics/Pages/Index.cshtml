@@ -5,6 +5,11 @@
 
 <a asp-page="CreateEdit">Create</a>
 
+<form method="post" asp-page-handler="CSV" enctype="multipart/form-data">
+    <input type="file" name="file" />
+    <input type="submit" />
+</form>
+
 <table>
     <tr>
         <th>Code</th>
@@ -18,10 +23,10 @@
         <tr>
             <td>@topic.Code</td>
             <td>@topic.Name</td>
-            <td>@topic.Level</td>
-            <td>@topic.WorkMethod</td>
-            <td>@String.Join(", ", topic.Tags)</td>
-            <td>@topic.Certificate.ExamId</td>
+            <td>@if(topic.Level != null) {<div>@topic.Level.Name</div>}</td>
+            <td>@if (topic.WorkMethod != null) {<div>@topic.WorkMethod.Name</div>}</td>
+            <td>@String.Join(", ", topic.Tags.Select(tag => tag.Name))</td>
+            <td>@if (topic.Certificate != null) {<div>@topic.Certificate.ExamId</div>}</td>
             <td>
                 <a asp-page="Details" asp-route-id="@topic.Id">Details</a>
                 <a asp-page="CreateEdit" asp-route-id="@topic.Id">Edit</a>

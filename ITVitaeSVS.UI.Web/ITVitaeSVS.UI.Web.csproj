@@ -16,6 +16,7 @@
     <ProjectReference Include="..\ITVitaeSVS.Core.Domain\ITVitaeSVS.Core.Domain.csproj" />
     <ProjectReference Include="..\ITVitaeSVS.Infrastructure.Data\ITVitaeSVS.Infrastructure.Data.csproj" />
     <ProjectReference Include="..\ITVitaeSVS.Infrastructure.Identity\ITVitaeSVS.Infrastructure.Identity.csproj" />
+    <ProjectReference Include="..\ITVitaeSVS.Infrastructure\ITVitaeSVS.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

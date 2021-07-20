@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace ITVitaeSVS.Core.Application.Interfaces.Services {
     public interface ITopicService : IGenericService<Topic> {
-        public IEnumerable<Topic> GetByNameCode(string nameCode);
-        public IEnumerable<Topic> GetByTag(Tag tag);
-        public IEnumerable<Topic> GetByLevel(Level level);
-        public IEnumerable<Topic> GetByCertificate(Certificate certificate);
+        public Topic GetByNameCode(string nameCode);
+        public IEnumerable<Topic> GetAllByNameCode(string nameCode);
+        public IEnumerable<Topic> GetAllByTag(Tag tag);
+        public IEnumerable<Topic> GetAllByLevel(Level level);
+        public IEnumerable<Topic> GetAllByCertificate(Certificate certificate);
     }
 }

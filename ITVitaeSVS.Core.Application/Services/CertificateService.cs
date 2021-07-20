@@ -34,7 +34,7 @@ namespace ITVitaeSVS.Core.Application.Services {
         }
 
         public Certificate GetByExamId(string examId) {
-            return repo.Get(certificate => certificate.ExamId.Contains(examId));
+            return repo.Get(certificate => certificate.ExamId == examId);
         }
     }
 }
