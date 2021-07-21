@@ -23,5 +23,10 @@ namespace ITVitaeSVS.Core.Domain.Entities {
         public IEnumerable<Topic> GetTopics() {
             return Curriculum.Topics.Select(ct => ct.Topic);
         }
+
+        public Progress? GetProgress(Topic topic)
+        {
+            return Curriculum.Topics.FirstOrDefault(ct => ct.Topic == topic)?.Progress;
+        }
     }
 }

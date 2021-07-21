@@ -11,6 +11,7 @@ namespace ITVitaeSVS.Infrastructure {
     public static class InfrastructureServiceExtensions {
         public static void AddInfrastructureServices(this IServiceCollection services) {
             services.AddScoped<ICSVReader, CSVReader>();
+            services.AddScoped<IPDFWriter, PDFWriter>();
         }
     }
 }
