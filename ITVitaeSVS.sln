@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITVitaeSVS.Core.Application
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITVitaeSVS.Infrastructure.Data", "ITVitaeSVS.Infrastructure.Data\ITVitaeSVS.Infrastructure.Data.csproj", "{427B179F-5771-44B8-80A9-40BC61F84A11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITVitaeSVS.Infrastructure", "ITVitaeSVS.Infrastructure\ITVitaeSVS.Infrastructure.csproj", "{77C494E3-E066-46BC-88D2-21162D956F98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITVitaeSVS.Infrastructure", "ITVitaeSVS.Infrastructure\ITVitaeSVS.Infrastructure.csproj", "{77C494E3-E066-46BC-88D2-21162D956F98}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

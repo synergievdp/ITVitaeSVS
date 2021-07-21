@@ -6,10 +6,10 @@
 <div>@Model.Topic.Code</div>
 <div>@Model.Topic.Name</div>
 <div>@Model.Topic.Objective</div>
-@if (Model.Topic.Level != null) {<div>Model.Topic.Level.Name</div>}
+@if (Model.Topic.Level != null) {<div>@Model.Topic.Level.Name</div>}
 <div>@Model.Topic.Duration.ToString()</div>
-@if (Model.Topic.WorkMethod != null) {<div>Model.Topic.WorkMethod.Name</div>}
+@if (Model.Topic.WorkMethod != null) {<div>@Model.Topic.WorkMethod.Name</div>}
 @if (Model.Topic.Certificate != null) {<div>@Model.Topic.Certificate.ExamId @Model.Topic.Certificate.Name</div>}
-<div>@String.Join(", ", Model.Topic.Tags.Select(tag => tag.Name))</div>
-<div>@String.Join(", ", Model.Topic.Requisites.Select(req => req.Name))</div>
-<div>@String.Join(", ", Model.Topic.Prerequisites.Select(prereq => prereq.Code))</div>
+<div>@String.Join(", ", Model.Topic.Tags.Where(tag => tag is not null).Select(tag => tag.Name))</div>
+<div>@String.Join(", ", Model.Topic.Requisites.Where(req => req is not null).Select(req => req.Name))</div>
+<div>@String.Join(", ", Model.Topic.Prerequisites.Where(prereq => prereq is not null).Select(prereq => prereq.Code))</div>

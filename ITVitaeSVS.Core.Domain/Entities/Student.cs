@@ -11,5 +11,17 @@ namespace ITVitaeSVS.Core.Domain.Entities {
         public string Name => String.Join(" ", FirstName, LastName);
         public DateTime EnrolledDate { get; set; } = DateTime.Today;
         public Curriculum Curriculum { get; set; } = new();
+
+        public void AddTopic(Topic topic) {
+            Curriculum.AddTopic(topic);
+        }
+
+        public void RemoveTopic(Topic topic) {
+            Curriculum.RemoveTopic(topic);
+        }
+
+        public IEnumerable<Topic> GetTopics() {
+            return Curriculum.Topics.Select(ct => ct.Topic);
+        }
     }
 }

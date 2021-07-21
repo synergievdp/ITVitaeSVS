@@ -9,5 +9,6 @@ namespace ITVitaeSVS.Core.Application.Interfaces.Services {
     public interface IStudentService : IGenericService<Student> {
         public Student GetByName(string name);
         public IEnumerable<Student> GetAllByName(string name);
+        public void SetTopics(int id, IEnumerable<int> topicIds);
     }
 }
