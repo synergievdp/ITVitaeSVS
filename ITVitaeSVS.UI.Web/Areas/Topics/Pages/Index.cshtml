@@ -1,4 +1,5 @@
 ﻿@page
+@using ITVitaeSVS.UI.Web.Models
 @model ITVitaeSVS.UI.Web.Areas.Topics.Pages.IndexModel
 @{
 }
@@ -9,6 +10,16 @@
     <input type="file" name="file" />
     <input type="submit" />
 </form>
+@if (TempData["OnPostCSV"] is string[] alert)
+{
+    @if (alert[0] == AlertType.Info)
+    {
+        <div class="alert alert-info" role="alert">@alert[1]</div>
+    } else if(alert[0] == AlertType.Warning)
+    {
+        <div class="alert alert-warning" role="alert">@alert[1]</div>
+    }
+}
 
 <table>
     <tr>
@@ -25,7 +36,7 @@
             <td>@topic.Name</td>
             <td>@if(topic.Level != null) {<div>@topic.Level.Name</div>}</td>
             <td>@if (topic.WorkMethod != null) {<div>@topic.WorkMethod.Name</div>}</td>
-            <td>@String.Join(", ", topic.Tags.Select(tag => tag.Name))</td>
+            <td>@String.Join(", ", topic.Tags.Where(tag => tag is not null).Select(tag => tag.Name))</td>
             <td>@if (topic.Certificate != null) {<div>@topic.Certificate.ExamId</div>}</td>
             <td>
                 <a asp-page="Details" asp-route-id="@topic.Id">Details</a>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ITVitaeSVS.Core.Application.Interfaces.Services;
 using ITVitaeSVS.Core.Domain.Entities;
+using ITVitaeSVS.UI.Web.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -30,8 +31,13 @@ namespace ITVitaeSVS.UI.Web.Areas.Topics.Pages
             using (var stream = file.OpenReadStream()) {
                 if (file.FileName.Contains("Topic")) {
                     csvReader.ReadTopicCSV(stream, '$');
+                    TempData["OnPostCSV"] = new string[] { AlertType.Info, "Submitted Topics file." };
                 } else if (file.FileName.Contains("Dropdown")) {
                     csvReader.ReadDropDownCSV(stream, '$');
+                    TempData["OnPostCSV"] = new string[] { AlertType.Info, "Submitted Dropdown file." };
+                } else
+                {
+                    TempData["OnPostCSV"] = new string[] { AlertType.Warning, "Did not read file." };
                 }
             }
             return RedirectToPage("Index");
