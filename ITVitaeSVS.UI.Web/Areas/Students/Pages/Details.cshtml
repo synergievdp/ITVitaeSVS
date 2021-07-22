@@ -7,6 +7,8 @@
 <div>@Model.Student.LastName</div>
 <div>@Model.Student.EnrolledDate</div>
 
+<a asp-area="Students" asp-page=Index>Back to Students</a>
+
 <form method=post asp-page-handler="SavePDF">
     <button type=submit>Save PDF</button>
 </form>

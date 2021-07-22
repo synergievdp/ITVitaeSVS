@@ -13,3 +13,5 @@
 <div>@String.Join(", ", Model.Topic.Tags.Where(tag => tag is not null).Select(tag => tag.Name))</div>
 <div>@String.Join(", ", Model.Topic.Requisites.Where(req => req is not null).Select(req => req.Name))</div>
 <div>@String.Join(", ", Model.Topic.Prerequisites.Where(prereq => prereq is not null).Select(prereq => prereq.Code))</div>
+
+<a asp-area="Topics" asp-page="Index">Back to Topics</a>
