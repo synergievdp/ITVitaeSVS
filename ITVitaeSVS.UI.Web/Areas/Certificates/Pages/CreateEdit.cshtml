@@ -4,7 +4,7 @@
 }
 
 <form method="post">
-    <input type="hidden" value="@Model.Certificate.Id" />
+    <input type="hidden" name="Certificate.Id" value="@Model.Certificate.Id" />
     <input asp-for="Certificate.Name" />
     <input asp-for="Certificate.ExamId" />
     <input type="submit" />

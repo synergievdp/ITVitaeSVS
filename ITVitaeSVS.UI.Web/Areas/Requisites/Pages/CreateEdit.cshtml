@@ -4,7 +4,7 @@
 }
 
 <form method="post">
-    <input type="hidden" value="@Model.Requisite.Id" />
+    <input type="hidden" name="Requisite.Id" value="@Model.Requisite.Id" />
     <input asp-for="Requisite.Name" />
     <input type="submit" />
 </form>

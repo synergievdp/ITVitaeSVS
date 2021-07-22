@@ -27,7 +27,7 @@ namespace ITVitaeSVS.UI.Web.Areas.Certificates.Pages
         }
 
         public IActionResult OnPost(int? id) {
-            if (id == 0) {
+            if (id == null) {
                 certificates.Add(Certificate);
             } else {
                 certificates.Update(Certificate);

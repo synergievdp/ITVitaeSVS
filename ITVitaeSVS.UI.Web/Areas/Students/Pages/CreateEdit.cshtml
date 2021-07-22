@@ -4,7 +4,7 @@
 }
 
 <form method="post">
-    <input type="hidden" value="@Model.Student.Id" />
+    <input type="hidden" name="Student.Id" value="@Model.Student.Id" />
     <input asp-for="Student.FirstName" />
     <input asp-for="Student.LastName" />
     <input asp-for="Student.EnrolledDate" />

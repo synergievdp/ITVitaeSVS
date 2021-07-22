@@ -4,7 +4,7 @@
 }
 
 <form method="post">
-    <input type="hidden" value="@Model.Level.Id" />
+    <input type="hidden" name="Level.Id" value="@Model.Level.Id" />
     <input asp-for="Level.Name" />
     <input type="submit" />
 </form>

@@ -4,7 +4,7 @@
 }
 
 <form method="post">
-    <input type="hidden" value="@Model.Topic.Id" />
+    <input type="hidden" name="Topic.Id" value="@Model.Topic.Id" />
     <input asp-for="Topic.Name" />
     <input type="submit" />
 </form>
