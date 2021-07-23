@@ -1,16 +1,22 @@
 ﻿using ITVitaeSVS.Core.Application.Interfaces.Repositories;
 using ITVitaeSVS.Infrastructure.Data.Repositories;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ITVitaeSVS.Infrastructure.Data {
-    public static class DataServiceExtensions {
-        public static void AddDataServices(this IServiceCollection services) {
-            services.AddSingleton(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+namespace ITVitaeSVS.Infrastructure.Data
+{
+    public static class DataServiceExtensions
+    {
+        public static void AddDataServices(this IServiceCollection services, IConfiguration config)
+        {
+            services.AddDbContext<DataDbContext>(
+                options =>
+                    options.UseSqlServer(config.GetConnectionString("DataDbContext"),
+                builder =>
+                    builder.MigrationsAssembly(typeof(DataDbContext).Assembly.FullName))
+            );
+            services.AddSingleton(typeof(IGenericRepository<>), typeof(InMemoryGenericRepository<>));
         }
     }
 }

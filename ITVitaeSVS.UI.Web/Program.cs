@@ -1,3 +1,4 @@
+using ITVitaeSVS.Infrastructure.Data;
 using ITVitaeSVS.Infrastructure.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -15,6 +16,7 @@ namespace ITVitaeSVS.UI.Web {
         public static void Main(string[] args) {
             CreateHostBuilder(args)
                 .Build()
+                .InitializeData()
                 .InitializeIdentity()
                 .Run();
         }

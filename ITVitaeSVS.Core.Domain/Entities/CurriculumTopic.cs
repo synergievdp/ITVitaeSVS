@@ -2,7 +2,9 @@
 
 namespace ITVitaeSVS.Core.Domain.Entities {
     public class CurriculumTopic {
+        public int CurriculumId { get; set; }
         public Curriculum Curriculum { get; set; }
+        public int TopicId { get; set; }
         public Topic Topic { get; set; }
         public Progress Progress { get; set; }
         public DateTime StartDate { get; set; }

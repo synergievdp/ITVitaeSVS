@@ -26,7 +26,7 @@ namespace ITVitaeSVS.UI.Web {
             services.AddRazorPages();
 
             services.AddApplicationServices();
-            services.AddDataServices();
+            services.AddDataServices(Configuration);
             services.AddInfrastructureServices();
             services.AddIdentityServices(Configuration);
         }

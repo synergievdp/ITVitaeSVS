@@ -1,5 +1,6 @@
 ﻿using ITVitaeSVS.Core.Application.Interfaces.Repositories;
 using ITVitaeSVS.Core.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,33 +8,82 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ITVitaeSVS.Infrastructure.Data.Repositories {
-    public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity {
-        public List<T> list { get; set; } = new();
-        public void Delete(int id) {
-            T entity = Get(e => e.Id == id);
-            list.Remove(entity);
+namespace ITVitaeSVS.Infrastructure.Data.Repositories
+{
+    public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
+    {
+        private readonly DataDbContext context;
+        protected readonly DbSet<T> table;
+
+        public GenericRepository(DataDbContext context)
+        {
+            this.context = context;
+            table = context.Set<T>();
+        }
+        public virtual void Delete(int id)
+        {
+            var entity = table.Find(id);
+            if (entity != null)
+                table.Remove(entity);
         }
 
-        public T Get(Expression<Func<T, bool>> filter = null, string[] includeProperties = null) {
-            return list.FirstOrDefault(filter.Compile());
+        public virtual T Get(Expression<Func<T, bool>> filter = null, string[] includeProperties = null)
+        {
+            return GetQueryable(filter, includeProperties: includeProperties).FirstOrDefault();
         }
 
-        public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null, string[] includeProperties = null) {
-            return list.Where(filter.Compile());
+        public virtual IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null, string[] includeProperties = null)
+        {
+            return GetQueryable(filter, includeProperties: includeProperties).ToList();
         }
 
-        public T Insert(T obj) {
-            list.Add(obj);
-            obj.Id = list.Count;
+        public virtual T Insert(T obj)
+        {
+            context.Add(obj);
+            context.SaveChanges();
             return obj;
         }
 
-        public void Update(T obj) {
-            T entity = list.FirstOrDefault(e => e.Id == obj.Id);
-            if (entity != null) {
-                entity.IsDeleted = obj.IsDeleted;
+        public virtual void Update(T obj)
+        {
+            context.Entry(obj).State = EntityState.Modified;
+            context.SaveChanges();
+        }
+        protected virtual IQueryable<T> GetQueryable(
+        Expression<Func<T, bool>> filter = null,
+        Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+        string[] includeProperties = null,
+        int? skip = null,
+        int? take = null)
+        {
+            IQueryable<T> query = context.Set<T>();
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
             }
+
+            foreach (var includeProperty in includeProperties)
+            {
+                query = query.Include(includeProperty);
+            }
+
+            if (orderBy != null)
+            {
+                query = orderBy(query);
+            }
+
+            if (skip.HasValue)
+            {
+                query = query.Skip(skip.Value);
+            }
+
+            if (take.HasValue)
+            {
+                query = query.Take(take.Value);
+            }
+
+            return query;
         }
     }
 }
