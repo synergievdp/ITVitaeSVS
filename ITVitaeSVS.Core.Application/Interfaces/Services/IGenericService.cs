@@ -11,6 +11,7 @@ namespace ITVitaeSVS.Core.Application.Interfaces.Services {
         public void Update(T obj);
         public void Remove(T obj);
         public T GetById(int id);
-        public IEnumerable<T> GetAll();
+        public IEnumerable<T> GetAll(int? skip = null, int? take = null);
+        public int Count();
     }
 }

@@ -17,6 +17,10 @@ namespace ITVitaeSVS.UI.Web.Areas.Topics.Pages
         private readonly ICSVReader csvReader;
 
         public IEnumerable<Topic> Topics { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public int CurrentPage { get; set; } = 1;
+        public int Count { get; set; }
+        public int PageSize { get; set; } = 15;
         public IndexModel(ITopicService topics,
             ICSVReader csvReader) {
             this.topics = topics;
@@ -24,7 +28,8 @@ namespace ITVitaeSVS.UI.Web.Areas.Topics.Pages
         }
         public void OnGet()
         {
-            Topics = topics.GetAll();
+            Topics = topics.GetAll((CurrentPage - 1) * PageSize, PageSize);
+            Count = topics.Count();
         }
 
         public IActionResult OnPostCSV(IFormFile file) {

@@ -19,8 +19,8 @@ namespace ITVitaeSVS.Infrastructure.Data.Repositories {
             return list.FirstOrDefault(filter.Compile());
         }
 
-        public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null, string[] includeProperties = null) {
-            return list.Where(filter.Compile());
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null, string[] includeProperties = null, int? skip = null, int? take = null) {
+            return list.Where(filter.Compile()).Skip(skip ?? 0).Take(take ?? list.Count);
         }
 
         public T Insert(T obj) {
@@ -34,6 +34,11 @@ namespace ITVitaeSVS.Infrastructure.Data.Repositories {
             if (entity != null) {
                 entity.IsDeleted = obj.IsDeleted;
             }
+        }
+
+        public int Count()
+        {
+            return list.Count;
         }
     }
 }

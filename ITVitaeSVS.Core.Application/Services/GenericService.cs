@@ -18,8 +18,8 @@ namespace ITVitaeSVS.Core.Application.Services {
             return repo.Insert(obj);
         }
 
-        public virtual IEnumerable<T> GetAll() {
-            return repo.GetAll(obj => obj.IsDeleted == false);
+        public virtual IEnumerable<T> GetAll(int? skip = null, int? take = null) {
+            return repo.GetAll(obj => obj.IsDeleted == false, skip: skip, take: take);
         }
 
         public virtual T GetById(int id) {
@@ -33,6 +33,11 @@ namespace ITVitaeSVS.Core.Application.Services {
 
         public virtual void Update(T obj) {
             repo.Update(obj);
+        }
+
+        public virtual int Count()
+        {
+            return repo.Count();
         }
     }
 }

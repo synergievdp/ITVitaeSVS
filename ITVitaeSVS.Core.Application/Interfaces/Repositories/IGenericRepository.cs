@@ -12,6 +12,7 @@ namespace ITVitaeSVS.Core.Application.Interfaces.Repositories {
         public void Update(T obj);
         public void Delete(int id);
         public T Get(Expression<Func<T, bool>> filter = null, string[] includeProperties = null);
-        public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null, string[] includeProperties = null);
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null, string[] includeProperties = null, int? skip = null, int? take = null);
+        public int Count();
     }
 }
