@@ -51,12 +51,10 @@ namespace ITVitaeSVS.Infrastructure.Services {
                         cells.AddRange(nextCells.Skip(1));
                     }
 
-                    Topic topic = new();
-                    for (int i = 0; i < headers.Count; i++) {
+                    var code = cells[1];
+                    Topic topic = topics.GetByNameCode(code) ?? new() { Code = code };
+                    for (int i = 2; i < headers.Count; i++) {
                         switch (headers[i]) {
-                            case "Code":
-                                topic.Code = cells[i];
-                                break;
                             case "Niveau":
                                 topic.Level = levels.GetByName(cells[i]);
                                 break;
@@ -94,7 +92,8 @@ namespace ITVitaeSVS.Infrastructure.Services {
                                 break;
                         }
                     }
-                    topics.Add(topic);
+                    if (topic.Id == 0) topics.Add(topic);
+                    else topics.Update(topic);
                 }
             }
 
@@ -119,16 +118,20 @@ namespace ITVitaeSVS.Infrastructure.Services {
                             continue;
                         switch (headers[i]) {
                             case "Werkvormen":
-                                workMethods.Add(new WorkMethod() { Name = cells[i] });
+                                if(workMethods.GetByName(cells[i]) is null)
+                                    workMethods.Add(new WorkMethod() { Name = cells[i] });
                                 break;
                             case "Niveau":
-                                levels.Add(new Level() { Name = cells[i] });
+                                if(levels.GetByName(cells[i]) is null)
+                                    levels.Add(new Level() { Name = cells[i] });
                                 break;
                             case "Tags":
-                                tags.Add(new Tag() { Name = cells[i] });
+                                if(tags.GetByName(cells[i]) is null)
+                                    tags.Add(new Tag() { Name = cells[i] });
                                 break;
                             case "Certificeringen Infra":
-                                certificates.Add(new Certificate() { Name = cells[i] });
+                                if(certificates.GetByName(cells[i]) is null)
+                                    certificates.Add(new Certificate() { Name = cells[i] });
                                 break;
                             default:
                                 break;
