@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using ITVitaeSVS.Infrastructure.Identity.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -37,14 +38,14 @@ namespace ITVitaeSVS.Infrastructure.Identity {
                 };
                 var result = userManager.CreateAsync(user, "Password123!").Result;
                 if(result.Succeeded) {
-                    userManager.AddToRoleAsync(user, "Admin").Wait();
+                    userManager.AddToRoleAsync(user, Roles.Admin).Wait();
                 }
             }
         }
 
         public static void SeedRoles(RoleManager<IdentityRole> roleManager) {
-            if(!roleManager.RoleExistsAsync("Admin").Result) {
-                var role = new IdentityRole("Admin");
+            if(!roleManager.RoleExistsAsync(Roles.Admin).Result) {
+                var role = new IdentityRole(Roles.Admin);
                 roleManager.CreateAsync(role).Wait();
             }
         }
