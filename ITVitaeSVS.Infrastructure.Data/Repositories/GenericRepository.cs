@@ -34,7 +34,7 @@ namespace ITVitaeSVS.Infrastructure.Data.Repositories
 
         public virtual IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null, string[] includeProperties = null, int? skip = null, int? take = null)
         {
-            return GetQueryable(filter, includeProperties: includeProperties).ToList();
+            return GetQueryable(filter, null, includeProperties, skip, take).ToList();
         }
 
         public virtual T Insert(T obj)
