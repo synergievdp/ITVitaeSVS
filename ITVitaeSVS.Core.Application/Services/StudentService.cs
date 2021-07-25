@@ -27,15 +27,16 @@ namespace ITVitaeSVS.Core.Application.Services {
             var student = GetById(id);
             if(student != null) {
                 foreach (var topic in student.GetTopics().ToList()) {
-                    if(!topicIds.Contains(topic.Id)) {
+                    if(topicIds is null || !topicIds.Contains(topic.Id)) {
                         student.RemoveTopic(topic);
                     }
                 }
 
-                foreach (var topicId in topicIds) {
-                    var topic = topics.GetById(topicId);
-                    student.AddTopic(topic);
-                }
+                if(topicIds is not null)
+                    foreach (var topicId in topicIds) {
+                        var topic = topics.GetById(topicId);
+                        student.AddTopic(topic);
+                    }
             }
             Update(student);
         }

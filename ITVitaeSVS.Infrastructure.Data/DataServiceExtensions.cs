@@ -16,7 +16,7 @@ namespace ITVitaeSVS.Infrastructure.Data
                 builder =>
                     builder.MigrationsAssembly(typeof(DataDbContext).Assembly.FullName))
             );
-            services.AddSingleton(typeof(IGenericRepository<>), typeof(InMemoryGenericRepository<>));
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         }
     }
 }

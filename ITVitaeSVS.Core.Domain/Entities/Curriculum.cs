@@ -11,7 +11,7 @@ namespace ITVitaeSVS.Core.Domain.Entities {
         public IReadOnlyCollection<CurriculumTopic> Topics => topics.AsReadOnly();
 
         public void AddTopic(Topic topic) {
-            if (!Topics.Any(ct => ct.Topic == topic)) {
+            if (!HasTopic(topic) && topic != null) {
                 var ct = new CurriculumTopic() {
                     Curriculum = this,
                     Topic = topic
@@ -25,6 +25,11 @@ namespace ITVitaeSVS.Core.Domain.Entities {
             if(ct != null) {
                 topics.Remove(ct);
             }
+        }
+
+        public bool HasTopic(Topic topic)
+        {
+            return topics.Any(ct => ct.Topic == topic);
         }
     }
 }

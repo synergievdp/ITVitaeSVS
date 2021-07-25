@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ITVitaeSVS.Infrastructure.Data.Repositories {
+namespace ITVitaeSVS.Tests.UnitTests.Utilities {
     public class InMemoryGenericRepository<T> : IGenericRepository<T> where T : BaseEntity {
         public List<T> list { get; set; } = new();
         public void Delete(int id) {
@@ -16,11 +16,14 @@ namespace ITVitaeSVS.Infrastructure.Data.Repositories {
         }
 
         public T Get(Expression<Func<T, bool>> filter = null, string[] includeProperties = null) {
-            return list.FirstOrDefault(filter.Compile());
+            return list.FirstOrDefault(filter?.Compile());
         }
 
         public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null, string[] includeProperties = null, int? skip = null, int? take = null) {
-            return list.Where(filter.Compile()).Skip(skip ?? 0).Take(take ?? list.Count);
+            var list = new List<T>();
+            if (filter != null)
+                list.Where(filter?.Compile());
+            return list.Skip(skip ?? 0).Take(take ?? list.Count);
         }
 
         public T Insert(T obj) {

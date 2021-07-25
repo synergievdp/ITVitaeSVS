@@ -39,15 +39,21 @@ namespace ITVitaeSVS.Infrastructure.Data.Repositories
 
         public virtual T Insert(T obj)
         {
-            context.Add(obj);
-            context.SaveChanges();
+            if (obj != null)
+            {
+                context.Add(obj);
+                context.SaveChanges();
+            }
             return obj;
         }
 
         public virtual void Update(T obj)
         {
-            context.Entry(obj).State = EntityState.Modified;
-            context.SaveChanges();
+            if (obj != null)
+            {
+                context.Entry(obj).State = EntityState.Modified;
+                context.SaveChanges();
+            }
         }
 
         public int Count()
@@ -69,10 +75,11 @@ namespace ITVitaeSVS.Infrastructure.Data.Repositories
                 query = query.Where(filter);
             }
 
-            foreach (var includeProperty in includeProperties)
-            {
-                query = query.Include(includeProperty);
-            }
+            if(includeProperties != null)
+                foreach (var includeProperty in includeProperties)
+                {
+                    query = query.Include(includeProperty);
+                }
 
             if (orderBy != null)
             {

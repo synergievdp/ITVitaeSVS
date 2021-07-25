@@ -15,7 +15,11 @@ namespace ITVitaeSVS.Core.Application.Services {
             this.repo = repo;
         }
         public virtual T Add(T obj) {
-            return repo.Insert(obj);
+            if (obj != null)
+            {
+                return repo.Insert(obj);
+            }
+            return null;
         }
 
         public virtual IEnumerable<T> GetAll(int? skip = null, int? take = null) {
@@ -27,12 +31,18 @@ namespace ITVitaeSVS.Core.Application.Services {
         }
 
         public virtual void Remove(T obj) {
-            obj.IsDeleted = true;
-            Update(obj);
+            if (obj != null)
+            {
+                obj.IsDeleted = true;
+                Update(obj);
+            }
         }
 
         public virtual void Update(T obj) {
-            repo.Update(obj);
+            if (obj != null)
+            {
+                repo.Update(obj);
+            }
         }
 
         public virtual int Count()
