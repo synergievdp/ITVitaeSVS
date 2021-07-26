@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using ITVitaeSVS.Core.Application.Interfaces.Services;
 using ITVitaeSVS.Core.Domain.Entities;
+using ITVitaeSVS.Infrastructure.Identity.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -12,6 +14,7 @@ using Microsoft.AspNetCore.StaticFiles;
 
 namespace ITVitaeSVS.UI.Web.Areas.Students.Pages
 {
+    [Authorize(Policy = Permissions.ChangeProgress)]
     public class DetailsModel : PageModel
     {
         private readonly IStudentService students;

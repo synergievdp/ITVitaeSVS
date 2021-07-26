@@ -1,0 +1,20 @@
+﻿@page
+@using System.Security.Claims
+@model ITVitaeSVS.UI.Web.Areas.Identity.Pages.Users.IndexModel
+@inject UserManager<IdentityUser> userManager
+@{
+}
+
+<table>
+    <tr>
+        <th>Email</th>
+        <th>Role(s)</th>
+    </tr>
+    @foreach(var user in Model.Users)
+    {
+        <tr>
+            <td>@user.Email</td>
+            <td>@String.Join(", ", user.Claims.Where(claim => claim.Type == ClaimTypes.Role).Select(claim => claim.Value))</td>
+        </tr>
+    }
+</table>

@@ -17,7 +17,7 @@ using Microsoft.Extensions.Logging;
 
 namespace ITVitaeSVS.UI.Web.Areas.Identity.Pages.Account
 {
-    [Authorize(Roles = Roles.Admin)]
+    [Authorize(Policy = Permissions.ManageUsers)]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;

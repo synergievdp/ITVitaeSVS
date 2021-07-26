@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using ITVitaeSVS.Infrastructure.Identity.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,8 +20,18 @@ namespace ITVitaeSVS.Infrastructure.Identity {
                         builder.MigrationsAssembly(typeof(IdentityDbContext).Assembly.FullName))
             );
 
+            services.AddAuthorization(options => {
+                options.AddPolicy(Permissions.ManageContent, policy => policy.RequireClaim(Permissions.ClaimType, Permissions.ManageContent));
+                options.AddPolicy(Permissions.ManageStudents, policy => policy.RequireClaim(Permissions.ClaimType, Permissions.ManageStudents));
+                options.AddPolicy(Permissions.ManageUsers, policy => policy.RequireClaim(Permissions.ClaimType, Permissions.ManageUsers));
+                options.AddPolicy(Permissions.ChangeProgress, policy => policy.Requirements.Add(new ChangeProgressRequirement()));
+            });
+
             services.AddDefaultIdentity<IdentityUser>().AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<IdentityDbContext>();
+
+            services.AddScoped<IAuthorizationHandler, ManageStudentsHandler>();
+            services.AddScoped<IAuthorizationHandler, PageOwnerHandler>();
         }
     }
 }

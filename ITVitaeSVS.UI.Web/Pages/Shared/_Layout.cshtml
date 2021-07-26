@@ -25,19 +25,44 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
-                        @if (User.IsInRole(Roles.Admin)) {
+                        @if (User.IsInRole(Roles.Student))
+                        {
+                            <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Students" asp-page="/Details" asp-route-id="0">Student</a>
+                        </li>
+                        }
+                        @if (User.HasClaim(Permissions.ClaimType, Permissions.ManageContent)) {
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Admin
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownContent" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Content
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" asp-area="Students" asp-page="Index">Students</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownContent">
                                 <a class="dropdown-item" asp-area="Topics" asp-page="Index">Topics</a>
                                 <a class="dropdown-item" asp-area="Certificates" asp-page="Index">Certificates</a>
                                 <a class="dropdown-item" asp-area="Tags" asp-page="Index">Tags</a>
                                 <a class="dropdown-item" asp-area="Requisites" asp-page="Index">Requisites</a>
                                 <a class="dropdown-item" asp-area="Levels" asp-page="Index">Levels</a>
                                 <a class="dropdown-item" asp-area="WorkMethods" asp-page="Index">WorkMethods</a>
+                            </div>
+                        </li>
+                        }
+                        @if (User.HasClaim(Permissions.ClaimType, Permissions.ManageStudents)) {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownStudents" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Students
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownStudents">
+                                <a class="dropdown-item" asp-area="Students" asp-page="Index">Students</a>
+                            </div>
+                        </li>
+                        }
+                        @if (User.HasClaim(Permissions.ClaimType, Permissions.ManageUsers)) {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUsers" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Users
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownUsers">
+                                <a class="dropdown-item" asp-area="Identity" asp-page="Users/Index">Users</a>
                             </div>
                         </li>
                         }

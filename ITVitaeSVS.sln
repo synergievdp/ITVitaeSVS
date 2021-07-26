@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITVitaeSVS.Infrastructure.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITVitaeSVS.Infrastructure", "ITVitaeSVS.Infrastructure\ITVitaeSVS.Infrastructure.csproj", "{77C494E3-E066-46BC-88D2-21162D956F98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITVitaeSVS.Tests.UnitTests", "ITVitaeSVS.Tests.UnitTests\ITVitaeSVS.Tests.UnitTests.csproj", "{09F4DE00-7C4D-407F-8C43-34B69DABCC78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITVitaeSVS.Tests.UnitTests", "ITVitaeSVS.Tests.UnitTests\ITVitaeSVS.Tests.UnitTests.csproj", "{09F4DE00-7C4D-407F-8C43-34B69DABCC78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
