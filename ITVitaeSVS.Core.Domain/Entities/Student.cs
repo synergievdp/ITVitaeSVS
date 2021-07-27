@@ -10,23 +10,24 @@ namespace ITVitaeSVS.Core.Domain.Entities {
         public string LastName { get; set; }
         public string Name => String.Join(" ", FirstName, LastName);
         public DateTime EnrolledDate { get; set; } = DateTime.Today;
-        public Curriculum Curriculum { get; set; } = new();
+        private readonly List<CurriculumTopic> topics = new();
+        public IReadOnlyCollection<CurriculumTopic> Topics => topics.AsReadOnly();
 
         public void AddTopic(Topic topic) {
-            Curriculum.AddTopic(topic);
+            topics.Add(new CurriculumTopic() { Student = this, Topic = topic });
         }
 
         public void RemoveTopic(Topic topic) {
-            Curriculum.RemoveTopic(topic);
+            topics.Remove(Topics.FirstOrDefault(ct => ct.TopicId == topic.Id));
         }
 
         public IEnumerable<Topic> GetTopics() {
-            return Curriculum.GetTopics();
+            return Topics.Select(ct => ct.Topic);
         }
 
         public Progress? GetProgress(Topic topic)
         {
-            return Curriculum.GetProgress(topic);
+            return Topics.FirstOrDefault(ct => ct.TopicId == topic.Id).Progress;
         }
     }
 }

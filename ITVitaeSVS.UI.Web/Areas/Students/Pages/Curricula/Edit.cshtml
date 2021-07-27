@@ -2,7 +2,7 @@
 @model ITVitaeSVS.UI.Web.Areas.Students.Pages.Curricula.EditModel
 @{
     bool Checked(ITVitaeSVS.Core.Domain.Entities.Topic topic) {
-        return Model.Student.Curriculum.Topics.Any(ct => ct.Topic == topic)?true:false;
+        return Model.Student.Topics.Any(ct => ct.Topic == topic)?true:false;
     }
 }
 <div><a asp-area="Students" asp-page=Details asp-route-id=@Model.Student.Id>Back to Student</a></div>

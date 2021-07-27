@@ -11,7 +11,7 @@ namespace ITVitaeSVS.Core.Application.Services {
     public class StudentService : GenericService<Student>, IStudentService {
         private readonly ITopicService topics;
 
-        public StudentService(IGenericRepository<Student> repo,
+        public StudentService(IStudentRepository repo,
             ITopicService topics) : base(repo) {
             this.topics = topics;
         }
@@ -21,6 +21,16 @@ namespace ITVitaeSVS.Core.Application.Services {
 
         public IEnumerable<Student> GetAllByName(string name) {
             return repo.GetAll(student => student.Name.Contains(name));
+        }
+
+        public override Student GetById(int id)
+        {
+            return repo.Get(s => s.Id == id);
+        }
+
+        public override IEnumerable<Student> GetAll(int? skip = null, int? take = null)
+        {
+            return repo.GetAll(null, skip, take);
         }
 
         public void SetTopics(int id, IEnumerable<int> topicIds) {

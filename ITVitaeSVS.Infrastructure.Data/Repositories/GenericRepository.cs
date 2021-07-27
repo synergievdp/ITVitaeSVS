@@ -27,14 +27,14 @@ namespace ITVitaeSVS.Infrastructure.Data.Repositories
                 table.Remove(entity);
         }
 
-        public virtual T Get(Expression<Func<T, bool>> filter = null, string[] includeProperties = null)
+        public virtual T Get(Expression<Func<T, bool>> filter = null)
         {
-            return GetQueryable(filter, includeProperties: includeProperties).FirstOrDefault();
+            return GetQueryable(filter).FirstOrDefault();
         }
 
-        public virtual IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null, string[] includeProperties = null, int? skip = null, int? take = null)
+        public virtual IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null, int? skip = null, int? take = null)
         {
-            return GetQueryable(filter, null, includeProperties, skip, take).ToList();
+            return GetQueryable(filter, null, skip, take).ToList();
         }
 
         public virtual T Insert(T obj)
@@ -64,7 +64,6 @@ namespace ITVitaeSVS.Infrastructure.Data.Repositories
         protected virtual IQueryable<T> GetQueryable(
         Expression<Func<T, bool>> filter = null,
         Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-        string[] includeProperties = null,
         int? skip = null,
         int? take = null)
         {
@@ -74,12 +73,6 @@ namespace ITVitaeSVS.Infrastructure.Data.Repositories
             {
                 query = query.Where(filter);
             }
-
-            if(includeProperties != null)
-                foreach (var includeProperty in includeProperties)
-                {
-                    query = query.Include(includeProperty);
-                }
 
             if (orderBy != null)
             {

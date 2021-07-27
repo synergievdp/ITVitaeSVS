@@ -19,8 +19,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITVitaeSVS.Infrastructure.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITVitaeSVS.Infrastructure", "ITVitaeSVS.Infrastructure\ITVitaeSVS.Infrastructure.csproj", "{77C494E3-E066-46BC-88D2-21162D956F98}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITVitaeSVS.Tests.UnitTests", "ITVitaeSVS.Tests.UnitTests\ITVitaeSVS.Tests.UnitTests.csproj", "{09F4DE00-7C4D-407F-8C43-34B69DABCC78}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,10 +49,6 @@ Global
 		{77C494E3-E066-46BC-88D2-21162D956F98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77C494E3-E066-46BC-88D2-21162D956F98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77C494E3-E066-46BC-88D2-21162D956F98}.Release|Any CPU.Build.0 = Release|Any CPU
-		{09F4DE00-7C4D-407F-8C43-34B69DABCC78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{09F4DE00-7C4D-407F-8C43-34B69DABCC78}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{09F4DE00-7C4D-407F-8C43-34B69DABCC78}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{09F4DE00-7C4D-407F-8C43-34B69DABCC78}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,7 +60,6 @@ Global
 		{ABE07460-0FD5-4176-8719-492129BACB36} = {8A6EFCD9-3EEF-4563-9ADD-F1A64878B85A}
 		{427B179F-5771-44B8-80A9-40BC61F84A11} = {8A6EFCD9-3EEF-4563-9ADD-F1A64878B85A}
 		{77C494E3-E066-46BC-88D2-21162D956F98} = {8A6EFCD9-3EEF-4563-9ADD-F1A64878B85A}
-		{09F4DE00-7C4D-407F-8C43-34B69DABCC78} = {09580B21-C215-44D7-9DC9-C24A41938762}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D72B5F53-1494-4908-BD0D-55A22E86BB1D}

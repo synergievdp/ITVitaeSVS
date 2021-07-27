@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace ITVitaeSVS.Core.Application.Services {
     public class TopicService : GenericService<Topic>, ITopicService {
 
-        public TopicService(IGenericRepository<Topic> repo) : base(repo) {
+        public TopicService(ITopicRepository repo) : base(repo) {
 
         }
         public IEnumerable<Topic> GetAllByCertificate(Certificate certificate) {

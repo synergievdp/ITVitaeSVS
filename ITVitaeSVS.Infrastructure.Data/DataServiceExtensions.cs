@@ -17,6 +17,8 @@ namespace ITVitaeSVS.Infrastructure.Data
                     builder.MigrationsAssembly(typeof(DataDbContext).Assembly.FullName))
             );
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<ITopicRepository, TopicRepository>();
         }
     }
 }

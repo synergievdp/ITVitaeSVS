@@ -25,7 +25,7 @@ namespace ITVitaeSVS.Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CurriculumTopic>()
-                .HasKey(ct => new { ct.CurriculumId, ct.TopicId });
+                .HasKey(ct => new { ct.StudentId, ct.TopicId });
 
             base.OnModelCreating(modelBuilder);
         }

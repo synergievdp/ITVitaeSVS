@@ -37,7 +37,7 @@
             <td>@if(topic.Level != null) {<div>@topic.Level.Name</div>}</td>
             <td>@if (topic.WorkMethod != null) {<div>@topic.WorkMethod.Name</div>}</td>
             <td>@String.Join(", ", topic.Tags.Where(tag => tag is not null).Select(tag => tag.Name))</td>
-            <td>@if (topic.Certificate != null) {<div>@topic.Certificate.ExamId</div>}</td>
+            <td>@if (topic.Certificate != null) {<div>@topic.Certificate.Name</div>}</td>
             <td>
                 <a asp-page="Details" asp-route-id="@topic.Id">Details</a>
                 <a asp-page="CreateEdit" asp-route-id="@topic.Id">Edit</a>
