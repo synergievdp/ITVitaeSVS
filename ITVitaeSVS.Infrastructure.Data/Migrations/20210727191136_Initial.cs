@@ -23,6 +23,19 @@ namespace ITVitaeSVS.Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Curriculum",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Curriculum", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Levels",
                 columns: table => new
                 {
@@ -34,22 +47,6 @@ namespace ITVitaeSVS.Infrastructure.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Levels", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Students",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    EnrolledDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Students", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -67,21 +64,26 @@ namespace ITVitaeSVS.Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Curriculum",
+                name: "Students",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EnrolledDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CurriculumId = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Curriculum", x => x.Id);
+                    table.PrimaryKey("PK_Students", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Curriculum_Students_Id",
-                        column: x => x.Id,
-                        principalTable: "Students",
+                        name: "FK_Students_Curriculum_CurriculumId",
+                        column: x => x.CurriculumId,
+                        principalTable: "Curriculum",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -237,6 +239,11 @@ namespace ITVitaeSVS.Infrastructure.Data.Migrations
                 column: "TopicId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Students_CurriculumId",
+                table: "Students",
+                column: "CurriculumId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Tags_TopicId",
                 table: "Tags",
                 column: "TopicId");
@@ -274,6 +281,9 @@ namespace ITVitaeSVS.Infrastructure.Data.Migrations
                 name: "Requisites");
 
             migrationBuilder.DropTable(
+                name: "Students");
+
+            migrationBuilder.DropTable(
                 name: "Tags");
 
             migrationBuilder.DropTable(
@@ -281,9 +291,6 @@ namespace ITVitaeSVS.Infrastructure.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Topic");
-
-            migrationBuilder.DropTable(
-                name: "Students");
 
             migrationBuilder.DropTable(
                 name: "Certificates");

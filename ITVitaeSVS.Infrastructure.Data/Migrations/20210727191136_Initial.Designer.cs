@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ITVitaeSVS.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(DataDbContext))]
-    [Migration("20210723113046_Initial")]
+    [Migration("20210727191136_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,7 +45,9 @@ namespace ITVitaeSVS.Infrastructure.Data.Migrations
             modelBuilder.Entity("ITVitaeSVS.Core.Domain.Entities.Curriculum", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -156,6 +158,9 @@ namespace ITVitaeSVS.Infrastructure.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("CurriculumId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("EnrolledDate")
                         .HasColumnType("datetime2");
 
@@ -169,6 +174,8 @@ namespace ITVitaeSVS.Infrastructure.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CurriculumId");
 
                     b.ToTable("Students");
                 });
@@ -261,17 +268,6 @@ namespace ITVitaeSVS.Infrastructure.Data.Migrations
                     b.ToTable("WorkMethods");
                 });
 
-            modelBuilder.Entity("ITVitaeSVS.Core.Domain.Entities.Curriculum", b =>
-                {
-                    b.HasOne("ITVitaeSVS.Core.Domain.Entities.Student", "Student")
-                        .WithOne("Curriculum")
-                        .HasForeignKey("ITVitaeSVS.Core.Domain.Entities.Curriculum", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Student");
-                });
-
             modelBuilder.Entity("ITVitaeSVS.Core.Domain.Entities.CurriculumTopic", b =>
                 {
                     b.HasOne("ITVitaeSVS.Core.Domain.Entities.Curriculum", "Curriculum")
@@ -303,6 +299,15 @@ namespace ITVitaeSVS.Infrastructure.Data.Migrations
                     b.HasOne("ITVitaeSVS.Core.Domain.Entities.Topic", null)
                         .WithMany("Requisites")
                         .HasForeignKey("TopicId");
+                });
+
+            modelBuilder.Entity("ITVitaeSVS.Core.Domain.Entities.Student", b =>
+                {
+                    b.HasOne("ITVitaeSVS.Core.Domain.Entities.Curriculum", "Curriculum")
+                        .WithMany()
+                        .HasForeignKey("CurriculumId");
+
+                    b.Navigation("Curriculum");
                 });
 
             modelBuilder.Entity("ITVitaeSVS.Core.Domain.Entities.Tag", b =>
@@ -340,11 +345,6 @@ namespace ITVitaeSVS.Infrastructure.Data.Migrations
             modelBuilder.Entity("ITVitaeSVS.Core.Domain.Entities.Curriculum", b =>
                 {
                     b.Navigation("Topics");
-                });
-
-            modelBuilder.Entity("ITVitaeSVS.Core.Domain.Entities.Student", b =>
-                {
-                    b.Navigation("Curriculum");
                 });
 
             modelBuilder.Entity("ITVitaeSVS.Core.Domain.Entities.Topic", b =>

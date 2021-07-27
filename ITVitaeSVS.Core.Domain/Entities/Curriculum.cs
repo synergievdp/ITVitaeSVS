@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace ITVitaeSVS.Core.Domain.Entities {
     public class Curriculum : BaseEntity {
-        public Student Student { get; set; }
         private readonly List<CurriculumTopic> topics = new();
         public IReadOnlyCollection<CurriculumTopic> Topics => topics.AsReadOnly();
 
@@ -30,6 +29,15 @@ namespace ITVitaeSVS.Core.Domain.Entities {
         public bool HasTopic(Topic topic)
         {
             return topics.Any(ct => ct.Topic == topic);
+        }
+
+        public IEnumerable<Topic> GetTopics()
+        {
+            return Topics.Select(ct => ct.Topic);
+        }
+        public Progress? GetProgress(Topic topic)
+        {
+            return Topics.FirstOrDefault(ct => ct.Topic == topic)?.Progress;
         }
     }
 }

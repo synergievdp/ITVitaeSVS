@@ -24,11 +24,6 @@ namespace ITVitaeSVS.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Student>()
-                .HasOne(s => s.Curriculum)
-                .WithOne(c => c.Student)
-                .HasForeignKey<Curriculum>(c => c.Id);
-
             modelBuilder.Entity<CurriculumTopic>()
                 .HasKey(ct => new { ct.CurriculumId, ct.TopicId });
 
