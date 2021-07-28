@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ITVitaeSVS.UI.Web.Areas.Topics.Pages
 {
-    [Authorize(Policy = Permissions.ManageContent)]
+    [Authorize(Policy = Permissions.ViewTopics)]
     public class DetailsModel : PageModel
     {
         private readonly ITopicService topics;

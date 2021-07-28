@@ -89,6 +89,7 @@ namespace ITVitaeSVS.Infrastructure.Identity {
                 roleManager.AddPermission(admin, Permissions.ManageUsers);
                 roleManager.AddPermission(admin, Permissions.ManageStudents);
                 roleManager.AddPermission(admin, Permissions.ManageContent);
+                roleManager.AddPermission(admin, Permissions.ViewTopics);
             }
 
             if (!roleManager.RoleExistsAsync(Roles.Teacher).Result)
@@ -101,12 +102,18 @@ namespace ITVitaeSVS.Infrastructure.Identity {
             {
                 roleManager.AddPermission(teacher, Permissions.ManageStudents);
                 roleManager.AddPermission(teacher, Permissions.ManageContent);
+                roleManager.AddPermission(teacher, Permissions.ViewTopics);
             }
 
             if (!roleManager.RoleExistsAsync(Roles.Student).Result)
             {
                 var role = new IdentityRole(Roles.Student);
                 roleManager.CreateAsync(role).Wait();
+            }
+            var student = roleManager.FindByNameAsync(Roles.Student).Result;
+            if(student != null)
+            {
+                roleManager.AddPermission(student, Permissions.ViewTopics);
             }
         }
 

@@ -25,6 +25,7 @@ namespace ITVitaeSVS.Infrastructure.Identity {
                 options.AddPolicy(Permissions.ManageStudents, policy => policy.RequireClaim(Permissions.ClaimType, Permissions.ManageStudents));
                 options.AddPolicy(Permissions.ManageUsers, policy => policy.RequireClaim(Permissions.ClaimType, Permissions.ManageUsers));
                 options.AddPolicy(Permissions.ChangeProgress, policy => policy.Requirements.Add(new ChangeProgressRequirement()));
+                options.AddPolicy(Permissions.ViewTopics, policy => policy.RequireClaim(Permissions.ClaimType, Permissions.ViewTopics));
             });
 
             services.AddDefaultIdentity<IdentityUser>().AddRoles<IdentityRole>()

@@ -13,5 +13,6 @@ namespace ITVitaeSVS.Infrastructure.Identity.Models
         public const string ManageStudents = "ManageStudents";
         public const string ChangeProgress = "ChangeProgress";
         public const string ManageUsers = "ManageUsers";
+        public const string ViewTopics = "ViewTopics";
     }
 }
