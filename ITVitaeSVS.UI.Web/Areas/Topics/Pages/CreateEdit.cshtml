@@ -5,6 +5,30 @@
 
 <form method="post">
     <input type="hidden" name="Topic.Id" value="@Model.Topic.Id" />
-    <input asp-for="Topic.Name" />
-    <input type="submit" />
+    <div class="form-group">
+        <label asp-for=Topic.Code></label>
+        <input asp-for="Topic.Code" />
+        </div>
+    <div class="form-group">
+        <label asp-for=Topic.Name></label>
+        <input asp-for="Topic.Name" />
+    </div>
+    <div class="form-group"><label asp-for=Topic.Objective></label>
+    <input asp-for="Topic.Objective" />
+    </div>
+    <div class="form-group">
+        <label asp-for=Topic.Duration></label>
+        <input asp-for="Topic.Duration" />
+        <span asp-validation-for="Topic.Duration" class="text-danger"></span>
+    </div> 
+    <div class="form-group">
+        <label asp-for=Topic.Level></label>
+        <select asp-for="Topic.Level" asp-items="Model.Levels"></select></div>
+    <div class="form-group">
+        <label asp-for=Topic.WorkMethod></label>
+        <select asp-for="Topic.WorkMethod" asp-items="Model.WorkMethods"></select></div>
+    <div class="form-group">
+        <label asp-for=Topic.Certificate></label>
+        <select asp-for="Topic.Certificate" asp-items="Model.Certificates"></select></div>
+    <div class="form-group"><input type="submit" /></div>
 </form>
