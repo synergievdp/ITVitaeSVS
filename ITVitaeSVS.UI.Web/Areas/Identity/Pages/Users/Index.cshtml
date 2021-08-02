@@ -14,7 +14,7 @@
     {
         <tr>
             <td>@user.Email</td>
-            <td>@String.Join(", ", user.Claims.Where(claim => claim.Type == ClaimTypes.Role).Select(claim => claim.Value))</td>
+            <td>@String.Join(", ", user.Roles.Select(r => r.Name))</td>
         </tr>
     }
 </table>
