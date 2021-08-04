@@ -25,6 +25,8 @@ namespace ITVitaeSVS.Core.Domain.Entities {
         public IReadOnlyCollection<Link> Links => links.AsReadOnly();
         private readonly List<Requisite> requisites = new();
         public IReadOnlyCollection<Requisite> Requisites => requisites.AsReadOnly();
+        private readonly List<File> files = new();
+        public IReadOnlyCollection<File> Files => files.AsReadOnly();
 
         public void AddTag(Tag tag) {
             if(!tags.Contains(tag) && tag != null)
@@ -43,6 +45,13 @@ namespace ITVitaeSVS.Core.Domain.Entities {
         public void AddRequisite(Requisite requisite) {
             if (!requisites.Contains(requisite) && requisite != null) {
                 requisites.Add(requisite);
+            }
+        }
+        public void AddFile(File file)
+        {
+            if(!files.Contains(file) && file != null)
+            {
+                files.Add(file);
             }
         }
     }

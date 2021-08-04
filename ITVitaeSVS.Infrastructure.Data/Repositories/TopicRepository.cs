@@ -26,6 +26,7 @@ namespace ITVitaeSVS.Infrastructure.Data.Repositories
                 .Include(t => t.Prerequisites)
                 .Include(t => t.Tags)
                 .Include(t => t.Certificate)
+                .Include(t => t.Files)
                 .FirstOrDefault();
         }
 
