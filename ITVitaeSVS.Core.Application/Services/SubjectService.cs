@@ -35,7 +35,8 @@ namespace ITVitaeSVS.Core.Application.Services
                     foreach (var topicId in topicIds)
                     {
                         var topic = topics.GetById(topicId);
-                        subject.AddTopic(topic);
+                        if(!subject.Topics.Contains(topic))
+                            subject.AddTopic(topic);
                     }
             }
             Update(subject);

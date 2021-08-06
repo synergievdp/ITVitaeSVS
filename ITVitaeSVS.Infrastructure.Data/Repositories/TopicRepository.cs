@@ -19,21 +19,17 @@ namespace ITVitaeSVS.Infrastructure.Data.Repositories
         public override Topic Get(Expression<Func<Topic, bool>> filter = null)
         {
             return GetQueryable(filter)
-                .Include(t => t.Level)
-                .Include(t => t.Links)
-                .Include(t => t.Requisites)
-                .Include(t => t.WorkMethod)
-                .Include(t => t.Prerequisites)
-                .Include(t => t.Tags)
-                .Include(t => t.Certificate)
-                .Include(t => t.Files)
-                .Include(t => t.Subject)
                 .FirstOrDefault();
         }
 
         public override IEnumerable<Topic> GetAll(Expression<Func<Topic, bool>> filter = null, int? skip = null, int? take = null)
         {
-            return GetQueryable(filter, null, skip, take)
+            return GetQueryable(filter, null, skip, take);
+        }
+
+        protected override IQueryable<Topic> GetQueryable(Expression<Func<Topic, bool>> filter = null, Func<IQueryable<Topic>, IOrderedQueryable<Topic>> orderBy = null, int? skip = null, int? take = null)
+        {
+            return base.GetQueryable(filter, orderBy, skip, take)
                 .Include(t => t.Level)
                 .Include(t => t.Links)
                 .Include(t => t.Requisites)

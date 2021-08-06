@@ -3,6 +3,7 @@ using ITVitaeSVS.Core.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -51,6 +52,7 @@ namespace ITVitaeSVS.Infrastructure.Data.Repositories
         {
             if (obj != null)
             {
+                Debug.WriteLine($"{typeof(T)}, {obj.Id}");
                 context.Entry(obj).State = EntityState.Modified;
                 context.SaveChanges();
             }

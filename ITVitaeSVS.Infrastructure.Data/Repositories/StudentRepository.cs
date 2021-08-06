@@ -19,12 +19,20 @@ namespace ITVitaeSVS.Infrastructure.Data.Repositories
 
         public override IEnumerable<Student> GetAll(Expression<Func<Student, bool>> filter = null, int? skip = null, int? take = null)
 {
-            return GetQueryable(filter, null, skip, take).Include(s => s.Topics).ThenInclude(ct => ct.Topic);
+            return GetQueryable(filter, null, skip, take);
         }
 
         public override Student Get(Expression<Func<Student, bool>> filter = null)
         {
-            return GetQueryable(filter).Include(s => s.Topics).ThenInclude(ct => ct.Topic).FirstOrDefault();
+            return GetQueryable(filter).FirstOrDefault();
+        }
+
+        protected override IQueryable<Student> GetQueryable(Expression<Func<Student, bool>> filter = null, Func<IQueryable<Student>, IOrderedQueryable<Student>> orderBy = null, int? skip = null, int? take = null)
+        {
+            return base.GetQueryable(filter, orderBy, skip, take)
+                .Include(s => s.Topics)
+                .ThenInclude(ct => ct.Topic)
+                .ThenInclude(t => t.Subject); ;
         }
     }
 }

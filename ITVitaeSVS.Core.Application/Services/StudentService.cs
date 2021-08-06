@@ -57,14 +57,19 @@ namespace ITVitaeSVS.Core.Application.Services {
 
         public void SetSubjects(int id, IEnumerable<int> subjectIds)
 {
-            if(subjectIds.Count() == 0)
+            if (subjectIds.Count() == 0)
             {
                 SetTopics(id, null);
             }
-            foreach (var subjectId in subjectIds)
+            else
             {
-                var subject = subjects.GetById(subjectId);
-                SetTopics(id, subject.Topics.Select(t => t.Id));
+                List<int> topicIds = new();
+                foreach (var subjectId in subjectIds)
+                {
+                    var subject = subjects.GetById(subjectId);
+                    topicIds.AddRange(subject.Topics.Select(t => t.Id));
+                }
+                SetTopics(id, topicIds);
             }
         }
     }

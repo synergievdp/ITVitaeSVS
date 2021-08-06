@@ -18,7 +18,7 @@
     <tr>
         <th></th>
     </tr>
-    @foreach(var topic in Model.Student.Topics) {
+    @foreach(var topic in Model.Student.Topics.OrderBy(ct => ct.Topic.Subject.Name)) {
                 <tr>
                     <td>@topic.Topic.Code</td>
                     <td>@topic.Progress</td>
