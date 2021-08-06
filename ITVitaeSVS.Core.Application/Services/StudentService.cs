@@ -6,14 +6,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ITVitaeSVS.Core.Application.Services {
     public class StudentService : GenericService<Student>, IStudentService {
         private readonly ITopicService topics;
+        private readonly ISubjectService subjects;
 
         public StudentService(IStudentRepository repo,
-            ITopicService topics) : base(repo) {
+            ITopicService topics,
+            ISubjectService subjects) : base(repo) {
             this.topics = topics;
+            this.subjects = subjects;
         }
         public Student GetByName(string name) {
             return repo.Get(student => student.Name.Contains(name));
@@ -49,6 +53,19 @@ namespace ITVitaeSVS.Core.Application.Services {
                     }
             }
             Update(student);
+        }
+
+        public void SetSubjects(int id, IEnumerable<int> subjectIds)
+{
+            if(subjectIds.Count() == 0)
+            {
+                SetTopics(id, null);
+            }
+            foreach (var subjectId in subjectIds)
+            {
+                var subject = subjects.GetById(subjectId);
+                SetTopics(id, subject.Topics.Select(t => t.Id));
+            }
         }
     }
 }

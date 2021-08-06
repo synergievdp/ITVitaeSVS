@@ -10,5 +10,6 @@ namespace ITVitaeSVS.Core.Application.Interfaces.Services {
         public Student GetByName(string name);
         public IEnumerable<Student> GetAllByName(string name);
         public void SetTopics(int id, IEnumerable<int> topicIds);
+        void SetSubjects(int id, IEnumerable<int> subjectIds);
     }
 }

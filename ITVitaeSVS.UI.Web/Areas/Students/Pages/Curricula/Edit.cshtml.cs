@@ -16,24 +16,24 @@ namespace ITVitaeSVS.UI.Web.Areas.Students.Pages.Curricula
     public class EditModel : PageModel
     {
         private readonly IStudentService students;
-        private readonly ITopicService topics;
-        public IEnumerable<Topic> Topics;
+        private readonly ISubjectService subjects;
+        public IEnumerable<Subject> Subjects;
         public Student Student { get; set; }
 
         public EditModel(IStudentService students,
-            ITopicService topics) {
+            ISubjectService subjects) {
             this.students = students;
-            this.topics = topics;
+            this.subjects = subjects;
         }
         public void OnGet(int id)
         {
             Student = students.GetById(id);
-            Topics = topics.GetAll();
+            Subjects = subjects.GetAll();
 
         }
 
-        public IActionResult OnPost(int id, IEnumerable<int> topicIds) {
-            students.SetTopics(id, topicIds);
+        public IActionResult OnPost(int id, IEnumerable<int> subjectIds) {
+            students.SetSubjects(id, subjectIds);
 
             return RedirectToPage("/Details", new { id });
         }

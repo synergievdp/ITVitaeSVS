@@ -1,19 +1,19 @@
 ﻿@page "/Students/Curricula/Edit/{id:int}"
 @model ITVitaeSVS.UI.Web.Areas.Students.Pages.Curricula.EditModel
 @{
-    bool Checked(ITVitaeSVS.Core.Domain.Entities.Topic topic) {
-        return Model.Student.Topics.Any(ct => ct.Topic == topic)?true:false;
+    bool Checked(ITVitaeSVS.Core.Domain.Entities.Subject subject) {
+        return Model.Student.Topics.Any(ct => ct.Topic.Subject == subject)?true:false;
     }
 }
 <div><a asp-area="Students" asp-page=Details asp-route-id=@Model.Student.Id>Back to Student</a></div>
 <div><a asp-area="Students" asp-page=Index>Back to Students</a></div>
 
 <form method="post">
-    @foreach (var topic in Model.Topics) {
+    @foreach (var subject in Model.Subjects) {
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="topicIds" value="@topic.Id" checked="@Checked(topic)"/>
+            <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="subjectIds" value="@subject.Id" checked="@Checked(subject)"/>
             <label class="form-check-label" for="flexCheckDefault">
-                @topic.Code @topic.Name 
+                @subject.Name 
             </label>
         </div>
     }
