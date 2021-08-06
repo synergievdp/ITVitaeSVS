@@ -1,0 +1,19 @@
+﻿@page
+@model ITVitaeSVS.UI.Web.Areas.Subjects.Pages.DetailsModel
+@{
+}
+
+<div>@Model.Subject.Name</div>
+
+<table>
+    <tr>
+        <th>Code</th>
+        <th>Name</th>
+    </tr>
+    @foreach(var topic in Model.Subject.Topics) {
+                <tr>
+                    <td>@topic.Code</td>
+                    <td>@topic.Name</td>
+                </tr>
+            }
+</table

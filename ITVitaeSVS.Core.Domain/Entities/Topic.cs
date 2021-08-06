@@ -17,6 +17,7 @@ namespace ITVitaeSVS.Core.Domain.Entities {
         public WorkMethod WorkMethod { get; set; }
         public Level Level { get; set; }
         public Certificate Certificate { get; set; }
+        public Subject Subject { get; set; }
         private readonly List<Topic> prerequisites = new();
         public IReadOnlyCollection<Topic> Prerequisites => prerequisites.AsReadOnly();
         private readonly List<Tag> tags = new();

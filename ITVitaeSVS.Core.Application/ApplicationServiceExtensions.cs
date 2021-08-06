@@ -17,6 +17,7 @@ namespace ITVitaeSVS.Core.Application {
             services.AddScoped<IRequisiteService, RequisiteService>();
             services.AddScoped<ITopicService, TopicService>();
             services.AddScoped<IStudentService, StudentService>();
+            services.AddScoped<ISubjectService, SubjectService>();
         }
     }
 }

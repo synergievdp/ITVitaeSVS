@@ -1,0 +1,24 @@
+﻿@page "{id:int?}"
+@model ITVitaeSVS.UI.Web.Areas.Subjects.Pages.CreateEditModel
+@{
+    bool Checked(ITVitaeSVS.Core.Domain.Entities.Topic topic) {
+        return Model.Subject.Topics.Any(t => t == topic)?true:false;
+    }
+}
+
+<form method="post">
+    <input type="hidden" name="Subject.Id" value="@Model.Subject.Id" />
+    <div><input asp-for="Subject.Name" /></div>
+
+    @foreach (var topic in Model.Topics) {
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="topicIds" value="@topic.Id" checked="@Checked(topic)"/>
+            <label class="form-check-label" for="flexCheckDefault">
+                @topic.Code @topic.Name 
+            </label>
+        </div>
+    }
+    <div>
+        <input type="submit" />
+    </div>
+</form>

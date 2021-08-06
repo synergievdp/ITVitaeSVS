@@ -19,6 +19,7 @@ namespace ITVitaeSVS.Infrastructure.Data
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<ITopicRepository, TopicRepository>();
+            services.AddScoped<ISubjectRepository, SubjectRepository>();
         }
     }
 }
