@@ -2,6 +2,25 @@
 @model ITVitaeSVS.UI.Web.Areas.Students.Pages.DetailsModel
 @{
 }
+<script>
+    function onSliderChange() {
+        var val = document.getElementById('slider').value;
+
+        var topic = document.getElementsByName('topic');
+        var info = document.getElementsByName('progress');
+
+        if(val > 0) {
+            topic.forEach(t => t.style.display = 'table-row');
+        } else {
+            topic.forEach(t => t.style.display = 'none');
+        }
+        if(val > 1) {
+            info.forEach(t => t.style.display = 'table-cell');
+        } else {
+            info.forEach(i => i.style.display = 'none');
+        }
+    }
+</script>
 
 <div>@Model.Student.FirstName</div>
 <div>@Model.Student.LastName</div>
@@ -10,19 +29,24 @@
 <a asp-area="Students" asp-page=Index>Back to Students</a>
 
 <form method=post asp-page-handler="SavePDF">
+    <input id=slider type="range" max=2 value=2 onchange="onSliderChange()" />
     <button type=submit>Save PDF</button>
 </form>
 
 <a asp-page="Curricula/Edit" asp-route-id="@Model.Student.Id">Edit Curriculum</a>
 <table>
-    <tr>
-        <th></th>
-    </tr>
-    @foreach(var topic in Model.Student.Topics.OrderBy(ct => ct.Topic.Subject.Name)) {
-                <tr>
-                    <td>@topic.Topic.Code</td>
-                    <td>@topic.Progress</td>
-                    <td>@topic.Approved</td>
+    @foreach(var subject in Model.Student.GetSubjects())
+    {
+        <tr>
+            <th>@subject.Name</th>
+        </tr>
+        @foreach(var topic in Model.Student.GetCurriculumTopics(subject))
+        {
+           <tr name=topic>
+                    <td>@topic.Topic.Name</td>
+                    <td name=progress>@topic.Progress</td>
+                    <td name=progress>@topic.Approved</td>
                 </tr>
-            }
+        }
+    }
 </table>
