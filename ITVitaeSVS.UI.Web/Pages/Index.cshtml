@@ -1,11 +1,12 @@
 ﻿@page
+@inject IStringLocalizer<IndexModel> localizer
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = @localizer["HomePage"];
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    <h1 class="display-4">@localizer["Welcome"]</h1>
 </div>
 
 @*@if(User.Identity.IsAuthenticated)

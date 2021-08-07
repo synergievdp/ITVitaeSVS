@@ -2,6 +2,7 @@ using ITVitaeSVS.Core.Application;
 using ITVitaeSVS.Infrastructure;
 using ITVitaeSVS.Infrastructure.Data;
 using ITVitaeSVS.Infrastructure.Identity;
+using ITVitaeSVS.UI.Web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -23,12 +24,17 @@ namespace ITVitaeSVS.UI.Web {
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
-            services.AddRazorPages();
-
             services.AddApplicationServices();
             services.AddDataServices(Configuration);
             services.AddInfrastructureServices();
             services.AddIdentityServices(Configuration);
+
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
+            services.AddSingleton<CommonLocalizationService>();
+
+            services.AddMvc().AddViewLocalization();
+            services.AddRazorPages();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +54,17 @@ namespace ITVitaeSVS.UI.Web {
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseRequestLocalization(options =>
+            {
+                string[] supportedCultures = { "en", "nl" };
+
+                options.SetDefaultCulture("nl");
+                options.AddSupportedCultures(supportedCultures);
+                options.AddSupportedUICultures(supportedCultures);
+
+                options.ApplyCurrentCultureToResponseHeaders = true;
+            });
 
             app.UseEndpoints(endpoints => {
                 endpoints.MapRazorPages();
