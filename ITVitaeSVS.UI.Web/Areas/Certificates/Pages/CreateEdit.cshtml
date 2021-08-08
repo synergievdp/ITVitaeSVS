@@ -1,11 +1,19 @@
 ﻿@page "{id:int?}"
+@using ITVitaeSVS.UI.Web.Areas.Certificates.Pages
 @model ITVitaeSVS.UI.Web.Areas.Certificates.Pages.CreateEditModel
-@{
+@inject IStringLocalizer<CreateEditModel> localizer
+@{ ViewData["Title"] = @localizer["Title"];
 }
 
 <form method="post">
     <input type="hidden" name="Certificate.Id" value="@Model.Certificate.Id" />
-    <input asp-for="Certificate.Name" />
-    <input asp-for="Certificate.ExamId" />
-    <input type="submit" />
+    <div>
+        <label asp-for="Certificate.Name"></label>
+        <input asp-for="Certificate.Name" />
+    </div>
+    <div>
+        <label asp-for="Certificate.ExamId"></label>
+        <input asp-for="Certificate.ExamId" />
+    </div>
+    <input type="submit" value=@localizer["Submit"] />
 </form>

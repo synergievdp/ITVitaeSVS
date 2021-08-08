@@ -1,21 +1,22 @@
 ﻿@page
 @model ITVitaeSVS.UI.Web.Areas.Certificates.Pages.IndexModel
-@{
+@inject IStringLocalizer<ITVitaeSVS.UI.Web.Areas.Certificates.Pages.IndexModel> localizer
+@{ ViewData["Title"] = @localizer["Title"];
 }
 
-<a asp-page="CreateEdit">Create</a>
+<a asp-page="CreateEdit">@localizer["Create"]</a>
 
 <table>
     <tr>
-        <th>Name</th>
-        <th>ExamId</th>
+        <th>@localizer["Name"]</th>
+        <th>@localizer["ExamId"]</th>
     </tr>
     @foreach (var certificate in Model.Certificates) {
         <tr>
             <td>@certificate.Name</td>
             <td>@certificate.ExamId</td>
             <td>
-                <a asp-page="CreateEdit" asp-route-id="@certificate.Id">Edit</a>
+                <a asp-page="CreateEdit" asp-route-id="@certificate.Id">@localizer["Edit"]</a>
             </td>
         </tr>
     }
