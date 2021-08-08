@@ -1,10 +1,15 @@
 ﻿@page "{id:int?}"
+@using ITVitaeSVS.UI.Web.Areas.WorkMethods.Pages
 @model ITVitaeSVS.UI.Web.Areas.WorkMethods.Pages.CreateEditModel
-@{
+@inject IStringLocalizer<CreateEditModel> localizer
+@{ ViewData["Title"] = @localizer["Title"];
 }
 
 <form method="post">
     <input type="hidden" name="WorkMethod.Id" value="@Model.WorkMethod.Id" />
+    <div>
+        <label asp-for="WorkMethod.Name"></label>
     <input asp-for="WorkMethod.Name" />
-    <input type="submit" />
+    </div>
+    <input type="submit" value=@localizer["Submit"] />
 </form>
