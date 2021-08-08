@@ -1,10 +1,15 @@
 ﻿@page "{id:int?}"
+@using ITVitaeSVS.UI.Web.Areas.Tags.Pages;
 @model ITVitaeSVS.UI.Web.Areas.Tags.Pages.CreateEditModel
-@{
+@inject IStringLocalizer<CreateEditModel> localizer
+@{ ViewData["Title"] = @localizer["Title"];
 }
 
 <form method="post">
     <input type="hidden" name="Tag.Id" value="@Model.Tag.Id" />
+    <div>
+        <label asp-for="Tag.Name"></label>
     <input asp-for="Tag.Name" />
-    <input type="submit" />
+    </div>
+    <input type="submit" value=@localizer["Submit"]/>
 </form>
