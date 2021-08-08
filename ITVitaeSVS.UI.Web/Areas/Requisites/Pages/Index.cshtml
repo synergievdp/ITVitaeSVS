@@ -1,19 +1,20 @@
 ﻿@page
 @model ITVitaeSVS.UI.Web.Areas.Requisites.Pages.IndexModel
-@{
+@inject IStringLocalizer<ITVitaeSVS.UI.Web.Areas.Requisites.Pages.IndexModel> localizer
+@{ ViewData["Title"] = @localizer["Title"];
 }
 
-<a asp-page="CreateEdit">Create</a>
+<a asp-page="CreateEdit">@localizer["Create"]</a>
 
 <table>
     <tr>
-        <th>Name</th>
+        <th>@localizer["Name"]</th>
     </tr>
     @foreach (var requisite in Model.Requisites) {
         <tr>
             <td>@requisite.Name</td>
             <td>
-                <a asp-page="CreateEdit" asp-route-id="@requisite.Id">Edit</a>
+                <a asp-page="CreateEdit" asp-route-id="@requisite.Id">@localizer["Edit"]</a>
             </td>
         </tr>
     }
