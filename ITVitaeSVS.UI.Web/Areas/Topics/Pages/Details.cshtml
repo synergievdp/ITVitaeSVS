@@ -1,6 +1,8 @@
 ﻿@page "{id:int}"
+@using ITVitaeSVS.UI.Web.Areas.Topics.Pages
 @model ITVitaeSVS.UI.Web.Areas.Topics.Pages.DetailsModel
-@{
+@inject IStringLocalizer<DetailsModel> localizer
+@{ ViewData["Title"] = @localizer["Title"];
 }
 
 <div>@Model.Topic.Code</div>
@@ -14,4 +16,4 @@
 <div>@String.Join(", ", Model.Topic.Requisites.Where(req => req is not null).Select(req => req.Name))</div>
 <div>@String.Join(", ", Model.Topic.Prerequisites.Where(prereq => prereq is not null).Select(prereq => prereq.Code))</div>
 
-<a asp-area="Topics" asp-page="Index">Back to Topics</a>
+<a asp-area="Topics" asp-page="Index">@localizer["BackToStudents"]</a>

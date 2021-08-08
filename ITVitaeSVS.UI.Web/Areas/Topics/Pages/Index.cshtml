@@ -1,10 +1,11 @@
 ﻿@page
 @using ITVitaeSVS.UI.Web.Models
 @model ITVitaeSVS.UI.Web.Areas.Topics.Pages.IndexModel
+@inject IStringLocalizer<ITVitaeSVS.UI.Web.Areas.Topics.Pages.IndexModel> localizer
 @{
 }
 
-<a asp-page="CreateEdit">Create</a>
+<a asp-page="CreateEdit">@localizer["Create"]</a>
 
 <form method="post" asp-page-handler="CSV" enctype="multipart/form-data">
     <input type="file" name="file" />
@@ -39,8 +40,8 @@
             <td>@String.Join(", ", topic.Tags.Where(tag => tag is not null).Select(tag => tag.Name))</td>
             <td>@if (topic.Certificate != null) {<div>@topic.Certificate.Name</div>}</td>
             <td>
-                <a asp-page="Details" asp-route-id="@topic.Id">Details</a>
-                <a asp-page="CreateEdit" asp-route-id="@topic.Id">Edit</a>
+                <a asp-page="Details" asp-route-id="@topic.Id">@localizer["Details"]</a>
+                <a asp-page="CreateEdit" asp-route-id="@topic.Id">@localizer["Edit"]</a>
             </td>
         </tr>
     }
