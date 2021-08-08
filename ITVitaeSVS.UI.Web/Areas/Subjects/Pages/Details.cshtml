@@ -1,6 +1,8 @@
 ﻿@page
+@using ITVitaeSVS.UI.Web.Areas.Subjects.Pages
 @model ITVitaeSVS.UI.Web.Areas.Subjects.Pages.DetailsModel
-@{
+@inject IStringLocalizer<DetailsModel> localizer
+@{ ViewData["Title"] = @localizer["Title"];
 }
 
 <div>@Model.Subject.Name</div>

@@ -1,6 +1,8 @@
 ﻿@page "{id:int?}"
+@using ITVitaeSVS.UI.Web.Areas.Subjects.Pages
 @model ITVitaeSVS.UI.Web.Areas.Subjects.Pages.CreateEditModel
-@{
+@inject IStringLocalizer<CreateEditModel> localizer
+@{ ViewData["Title"] = @localizer["Title"];
     bool Checked(ITVitaeSVS.Core.Domain.Entities.Topic topic) {
         return Model.Subject.Topics.Any(t => t == topic)?true:false;
     }
@@ -19,6 +21,6 @@
         </div>
     }
     <div>
-        <input type="submit" />
+        <input type="submit" value=@localizer["Submit"] />
     </div>
 </form>
