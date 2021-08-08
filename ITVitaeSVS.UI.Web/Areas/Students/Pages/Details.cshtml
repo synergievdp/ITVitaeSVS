@@ -1,6 +1,8 @@
 ﻿@page "{id:int}"
+@using ITVitaeSVS.UI.Web.Areas.Students.Pages
 @model ITVitaeSVS.UI.Web.Areas.Students.Pages.DetailsModel
-@{
+@inject IStringLocalizer<DetailsModel> localizer
+@{ ViewData["Title"] = @localizer["Title"];
 }
 <script>
     function onSliderChange() {
@@ -26,11 +28,11 @@
 <div>@Model.Student.LastName</div>
 <div>@Model.Student.EnrolledDate</div>
 
-<a asp-area="Students" asp-page=Index>Back to Students</a>
+<a asp-area="Students" asp-page=Index>@localizer["BackToStudents"]</a>
 
 <form method=post asp-page-handler="SavePDF">
     <input id=slider type="range" max=2 value=2 onchange="onSliderChange()" />
-    <button type=submit>Save PDF</button>
+    <button type=submit>@localizer["SavePDF"]</button>
 </form>
 
 <a asp-page="Curricula/Edit" asp-route-id="@Model.Student.Id">Edit Curriculum</a>

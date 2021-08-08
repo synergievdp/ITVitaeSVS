@@ -1,9 +1,10 @@
 ﻿@page
 @model ITVitaeSVS.UI.Web.Areas.Students.Pages.IndexModel
-@{
+@inject IStringLocalizer<ITVitaeSVS.UI.Web.Areas.Students.Pages.IndexModel> localizer
+@{ ViewData["Title"] = @localizer["Title"];
 }
 
-<a asp-page="CreateEdit">Create</a>
+<a asp-page="CreateEdit">@localizer["Create"]</a>
 
 <table>
     <tr>
@@ -17,8 +18,8 @@
     <td>@student.LastName</td>
     <td>@student.EnrolledDate</td>
     <td>
-        <a asp-page="Details" asp-route-id="@student.Id">Details</a>
-        <a asp-page="CreateEdit" asp-route-id="@student.Id">Edit</a>
+        <a asp-page="Details" asp-route-id="@student.Id">@localizer["Details"]</a>
+        <a asp-page="CreateEdit" asp-route-id="@student.Id">@localizer["Edit"]</a>
     </td>
 </tr>
             }

@@ -1,12 +1,15 @@
 ﻿@page "/Students/Curricula/Edit/{id:int}"
+@using ITVitaeSVS.UI.Web.Areas.Students.Pages.Curricula
 @model ITVitaeSVS.UI.Web.Areas.Students.Pages.Curricula.EditModel
-@{
+@inject IStringLocalizer<EditModel> localizer
+@{ ViewData["Title"] = @localizer["Title"];
+
     bool Checked(ITVitaeSVS.Core.Domain.Entities.Subject subject) {
         return Model.Student.Topics.Any(ct => ct.Topic.Subject == subject)?true:false;
     }
 }
-<div><a asp-area="Students" asp-page=Details asp-route-id=@Model.Student.Id>Back to Student</a></div>
-<div><a asp-area="Students" asp-page=Index>Back to Students</a></div>
+<div><a asp-area="Students" asp-page=Details asp-route-id=@Model.Student.Id>@localizer["BackToStudent"]</a></div>
+<div><a asp-area="Students" asp-page=Index>@localizer["BackToStudents"]</a></div>
 
 <form method="post">
     @foreach (var subject in Model.Subjects) {
@@ -18,6 +21,6 @@
         </div>
     }
     <div>
-        <input type="submit" />
+        <input type="submit" value=@localizer["Submit"] />
     </div>
 </form>

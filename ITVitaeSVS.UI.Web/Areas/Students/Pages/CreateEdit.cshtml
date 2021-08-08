@@ -1,12 +1,23 @@
 ﻿@page "{id:int?}"
+@using ITVitaeSVS.UI.Web.Areas.Students.Pages
 @model ITVitaeSVS.UI.Web.Areas.Students.Pages.CreateEditModel
-@{
+@inject IStringLocalizer<CreateEditModel> localizer
+@{ ViewData["Title"] = @localizer["Title"];
 }
 
 <form method="post">
     <input type="hidden" name="Student.Id" value="@Model.Student.Id" />
-    <input asp-for="Student.FirstName" />
+    <div>
+    <label asp-for="Student.FirstName"></label>
+        <input asp-for="Student.FirstName" />
+    </div>
+    <div>
+        <label asp-for="Student.LastName"></label>
     <input asp-for="Student.LastName" />
+    </div>
+    <div>
+        <label asp-for="Student.EnrolledDate"></label>
     <input asp-for="Student.EnrolledDate" />
-    <input type="submit" />
+    </div>
+    <input type="submit" value=@localizer["Submit"] />
 </form>
