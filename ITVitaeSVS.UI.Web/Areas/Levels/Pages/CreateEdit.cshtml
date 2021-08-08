@@ -1,10 +1,15 @@
 ﻿@page "{id:int?}"
+@using ITVitaeSVS.UI.Web.Areas.Levels.Pages
 @model ITVitaeSVS.UI.Web.Areas.Levels.Pages.CreateEditModel
-@{
+@inject IStringLocalizer<CreateEditModel> localizer
+@{ ViewData["Title"] = @localizer["Title"];
 }
 
 <form method="post">
     <input type="hidden" name="Level.Id" value="@Model.Level.Id" />
-    <input asp-for="Level.Name" />
-    <input type="submit" />
+    <div>
+        <label asp-for="Level.Name"></label>
+        <input asp-for="Level.Name" />
+    </div>
+    <input type="submit" value=@localizer["Submit"] />
 </form>
