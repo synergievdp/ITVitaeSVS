@@ -2,6 +2,7 @@
 using ITVitaeSVS.Core.Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -62,7 +63,8 @@ namespace ITVitaeSVS.Infrastructure.Services {
                                 topic.Name = cells[i];
                                 break;
                             case "Duur":
-                                topic.Duration = TimeSpan.Zero;
+                                int duration = cells[i].Count() >= 1 ? int.Parse(cells[i][0]+"") * 3 : 0;
+                                topic.Duration = new TimeSpan(duration, 0, 0);
                                 break;
                             case "Werkvorm(en)":
                                 topic.WorkMethod = workMethods.GetByName(cells[i]);
