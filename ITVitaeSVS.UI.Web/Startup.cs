@@ -6,11 +6,14 @@ using ITVitaeSVS.UI.Web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -35,10 +38,23 @@ namespace ITVitaeSVS.UI.Web {
             services.AddMvc().AddViewLocalization();
             services.AddRazorPages();
 
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                CultureInfo[] supportedCultures = { 
+                    new CultureInfo("en-US"), 
+                    new CultureInfo("nl-NL") 
+                };
+
+                options.DefaultRequestCulture = new RequestCulture("nl-NL");
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+
+                options.ApplyCurrentCultureToResponseHeaders = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IOptions<RequestLocalizationOptions> requestLocalizationOptions) {
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
             } else {
@@ -55,16 +71,7 @@ namespace ITVitaeSVS.UI.Web {
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseRequestLocalization(options =>
-            {
-                string[] supportedCultures = { "en", "nl" };
-
-                options.SetDefaultCulture("nl");
-                options.AddSupportedCultures(supportedCultures);
-                options.AddSupportedUICultures(supportedCultures);
-
-                options.ApplyCurrentCultureToResponseHeaders = true;
-            });
+            app.UseRequestLocalization(requestLocalizationOptions.Value);
 
             app.UseEndpoints(endpoints => {
                 endpoints.MapRazorPages();
