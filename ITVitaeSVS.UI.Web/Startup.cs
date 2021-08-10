@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Localization.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -36,7 +37,9 @@ namespace ITVitaeSVS.UI.Web {
             services.AddSingleton<CommonLocalizationService>();
 
             services.AddMvc().AddViewLocalization();
-            services.AddRazorPages();
+            services.AddRazorPages(options =>
+                options.Conventions.Add(new CultureTemplatePageRouteModelConvention())
+            );
 
             services.Configure<RequestLocalizationOptions>(options =>
             {
@@ -49,6 +52,7 @@ namespace ITVitaeSVS.UI.Web {
                 options.SupportedCultures = supportedCultures;
                 options.SupportedUICultures = supportedCultures;
 
+                options.RequestCultureProviders.Insert(0, new RouteDataRequestCultureProvider { Options = options });
                 options.ApplyCurrentCultureToResponseHeaders = true;
             });
         }
